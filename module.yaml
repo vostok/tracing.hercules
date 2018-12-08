@@ -7,9 +7,14 @@ notests *default:
 
   install:
     - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
+    - module vostok.tracing.abstractions
+    - module vostok.hercules.client.abstractions
 
   deps:
     - vostok.devtools
+    - vostok.hercules.client.abstractions
+    - vostok.tracing.abstractions
+    - vostok.commons.time/src
 
 full-build > notests:
   build:
