@@ -48,7 +48,7 @@ namespace Vostok.Tracing.Hercules
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static object UnwrapValue(HerculesValue value)
-            => value.IsVector ? value.AsVector.Elements.Select(element => element.Value).ToArray() : value.Value;
+            => value.IsVector ? value.AsVector.Elements.Select(element => element.Value) : value.Value;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
