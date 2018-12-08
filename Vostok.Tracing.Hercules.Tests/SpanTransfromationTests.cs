@@ -210,6 +210,22 @@ namespace Vostok.Tracing.Hercules.Tests
             herculesSpan.Annotations["key2"].Should().Be("154.31.215.11");
         }
 
+
+        [Test]
+        public void Should_correctly_transform_annotations_with_null_values()
+        {
+            originalSpan.Annotations.Returns(
+                new Dictionary<string, object>
+                {
+                    ["key1"] = null,
+                    ["key2"] = null
+                });
+
+            TransformSpan();
+
+            herculesSpan.Annotations.Should().BeEquivalentTo(originalSpan.Annotations);
+        }
+
         private void TransformSpan()
         {
             sender.Send(originalSpan);
