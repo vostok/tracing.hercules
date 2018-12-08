@@ -1,0 +1,17 @@
+notests *default:
+  build:
+    target: Vostok.Tracing.Hercules.sln
+    configuration: NoTests
+    tool:
+      name: dotnet
+
+  install:
+    - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
+
+  deps:
+    - vostok.devtools
+
+full-build > notests:
+  build:
+    target: Vostok.Tracing.Hercules.sln
+    configuration: Release
