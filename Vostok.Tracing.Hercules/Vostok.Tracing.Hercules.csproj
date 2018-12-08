@@ -29,6 +29,8 @@
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
 
+  <Import Project="..\..\vostok.commons.formatting\ObjectValueFormatter.props" />
+
   <ItemGroup>
     <Reference Include="Vostok.Tracing.Abstractions">
       <SpecificVersion>False</SpecificVersion>
