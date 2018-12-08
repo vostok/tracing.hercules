@@ -1,6 +1,5 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Vostok.Hercules.Client.Abstractions;
 using Vostok.Tracing.Abstractions;
 
 namespace Vostok.Tracing.Hercules
@@ -8,13 +7,11 @@ namespace Vostok.Tracing.Hercules
     [PublicAPI]
     public class HerculesSpanSender : ISpanSender
     {
-        private readonly IHerculesSink sink;
-        private readonly string stream;
+        private readonly HerculesSpanSenderConfig config;
 
-        public HerculesSpanSender([NotNull] IHerculesSink sink, [NotNull] string stream)
+        public HerculesSpanSender([NotNull] HerculesSpanSenderConfig config)
         {
-            this.sink = sink ?? throw new ArgumentNullException(nameof(sink));
-            this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
+            this.config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         public void Send(ISpan span)
