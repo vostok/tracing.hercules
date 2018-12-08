@@ -13,6 +13,7 @@ namespace Vostok.Tracing.Hercules
     public class HerculesSpan : ISpan
     {
         private readonly HerculesEvent @event;
+        private volatile HerculesTags annotationTags;
         private volatile HerculesSpanAnnotations annotations;
 
         public HerculesSpan([NotNull] HerculesEvent @event)
@@ -36,7 +37,10 @@ namespace Vostok.Tracing.Hercules
             => ExtractTimestamp(@event, TagNames.EndTimestampUtc, TagNames.EndTimestampUtcOffset);
 
         public IReadOnlyDictionary<string, object> Annotations
-            => annotations ?? (annotations = new HerculesSpanAnnotations(@event.Tags.GetValue(TagNames.Annotations).AsContainer));
+            => annotations ?? (annotations = new HerculesSpanAnnotations(AnnotationTags));
+
+        public HerculesTags AnnotationTags
+            => annotationTags ?? (annotationTags = @event.Tags.GetValue(TagNames.Annotations).AsContainer);
 
         [CanBeNull]
         private static DateTimeOffset? ExtractTimestamp(HerculesEvent @event, string timestampTag, string offsetTag)

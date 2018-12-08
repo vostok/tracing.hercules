@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Vostok.Hercules.Client.Abstractions.Events;
+using Vostok.Hercules.Client.Abstractions.Values;
 
 namespace Vostok.Tracing.Hercules
 {
@@ -35,15 +36,19 @@ namespace Vostok.Tracing.Hercules
                 return false;
             }
 
-            value = herculesValue.Value;
+            value = UnwrapValue(herculesValue);
             return true;
         }
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
-            => annotations.Select(pair => new KeyValuePair<string, object>(pair.Key, pair.Value.Value)).GetEnumerator();
+            => annotations.Select(pair => new KeyValuePair<string, object>(pair.Key, UnwrapValue(pair.Value))).GetEnumerator();
 
         public object this[string key]
-            => annotations.GetValue(key).Value;
+            => UnwrapValue(annotations.GetValue(key));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static object UnwrapValue(HerculesValue value)
+            => value.IsVector ? value.AsVector.Elements.Select(element => element.Value).ToArray() : value.Value;
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
