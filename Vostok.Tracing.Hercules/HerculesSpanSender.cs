@@ -14,19 +14,26 @@ namespace Vostok.Tracing.Hercules
     [PublicAPI]
     public class HerculesSpanSender : ISpanSender
     {
-        private readonly HerculesSpanSenderSettings settings;
+        private readonly Func<HerculesSpanSenderSettings> settingsProvider;
+
+        public HerculesSpanSender([NotNull] Func<HerculesSpanSenderSettings> settingsProvider)
+        {
+            this.settingsProvider = settingsProvider ?? throw new ArgumentNullException(nameof(settingsProvider));
+        }
 
         public HerculesSpanSender([NotNull] HerculesSpanSenderSettings settings)
+            : this(() => settings)
         {
-            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
         public void Send(ISpan span)
         {
-            settings.Sink.Put(settings.Stream, builder => BuildHerculesEvent(builder, span));
+            var settings = settingsProvider();
+
+            settings.Sink.Put(settings.Stream, builder => BuildHerculesEvent(builder, span, settings.FormatProvider));
         }
 
-        private void BuildHerculesEvent(IHerculesEventBuilder builder, ISpan span)
+        private void BuildHerculesEvent(IHerculesEventBuilder builder, ISpan span, IFormatProvider formatProvider)
         {
             builder.SetTimestamp(span.EndTimestamp ?? span.BeginTimestamp);
 
@@ -47,17 +54,17 @@ namespace Vostok.Tracing.Hercules
                 builder.AddValue(TagNames.EndTimestampUtcOffset, span.EndTimestamp.Value.Offset.Ticks);
             }
 
-            builder.AddContainer(TagNames.Annotations, tagBuilder => BuildAnnotationsContainer(tagBuilder, span));
+            builder.AddContainer(TagNames.Annotations, tagBuilder => BuildAnnotationsContainer(tagBuilder, span, formatProvider));
         }
 
-        private void BuildAnnotationsContainer(IHerculesTagsBuilder builder, ISpan span)
+        private void BuildAnnotationsContainer(IHerculesTagsBuilder builder, ISpan span, IFormatProvider formatProvider)
         {
             foreach (var pair in span.Annotations)
             {
                 if (builder.TryAddObject(pair.Key, pair.Value))
                     continue;
 
-                builder.AddValue(pair.Key, ObjectValueFormatter.Format(pair.Value, formatProvider: settings.FormatProvider));
+                builder.AddValue(pair.Key, ObjectValueFormatter.Format(pair.Value, formatProvider: formatProvider));
             }
         }
     }
