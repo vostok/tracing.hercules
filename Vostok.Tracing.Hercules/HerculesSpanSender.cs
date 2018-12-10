@@ -33,7 +33,7 @@ namespace Vostok.Tracing.Hercules
             builder
                 .AddValue(TagNames.TraceId, span.TraceId)
                 .AddValue(TagNames.SpanId, span.SpanId)
-                .AddValue(TagNames.BeginTimestampUtc, EpochHelper.ToGregorianUtcTicks(span.BeginTimestamp.UtcDateTime))
+                .AddValue(TagNames.BeginTimestampUtc, EpochHelper.ToUnixTimeUtcTicks(span.BeginTimestamp.UtcDateTime))
                 .AddValue(TagNames.BeginTimestampUtcOffset, span.BeginTimestamp.Offset.Ticks);
 
             if (span.ParentSpanId.HasValue)
@@ -43,7 +43,7 @@ namespace Vostok.Tracing.Hercules
 
             if (span.EndTimestamp.HasValue)
             {
-                builder.AddValue(TagNames.EndTimestampUtc, EpochHelper.ToGregorianUtcTicks(span.EndTimestamp.Value.UtcDateTime));
+                builder.AddValue(TagNames.EndTimestampUtc, EpochHelper.ToUnixTimeUtcTicks(span.EndTimestamp.Value.UtcDateTime));
                 builder.AddValue(TagNames.EndTimestampUtcOffset, span.EndTimestamp.Value.Offset.Ticks);
             }
 

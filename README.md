@@ -14,11 +14,11 @@ Here's how [ISpan](https://github.com/vostok/tracing.abstractions/blob/master/Vo
 - `ParentSpanId` (optional) ---> `ParentSpanId` tag of `UUID` type.
 
 - `BeginTimestamp` (mandatory) corresponds to 2 tags:
-  - `BeginTimestampUtc` — a `long` tag that contains the UTC timestamp in 100-ns ticks from Gregorian Epoch.
+  - `BeginTimestampUtc` — a `long` tag that contains the UTC timestamp in 100-ns ticks from Unix epoch.
   - `BeginTimestampUtcOffset` — a `long` tag with offset from UTC expressed in 100-ns ticks.
 
 - `EndTimestamp` (optional) also corresponds to 2 tags, both of which can be absent for 'endless' spans:
-  - `EndTimestampUtc` — a `long` tag that contains the UTC timestamp in 100-ns ticks from Gregorian Epoch.
+  - `EndTimestampUtc` — a `long` tag that contains the UTC timestamp in 100-ns ticks from Unix epoch.
   - `EndTimestampUtcOffset` — a `long` tag with offset from UTC expressed in 100-ns ticks.
   
 - `Annotations` dictionary corresponds to a container with same name. This container contains a tag for each pair. Keys are translated as-is, and the values are handled according to following conventions:
@@ -27,4 +27,4 @@ Here's how [ISpan](https://github.com/vostok/tracing.abstractions/blob/master/Vo
   
 Hercules event's built-in timestamp is chosen equal to `EndTimestampUtc` or `BeginTimestampUtc` if former is missing.
 
-Gregorian epoch used as a reference point for timestamp is `1582-10-15T00:00:00.000Z`.
+Unix epoch used as a reference point for timestamp is `1970-01-01 00:00:00.000Z`.
