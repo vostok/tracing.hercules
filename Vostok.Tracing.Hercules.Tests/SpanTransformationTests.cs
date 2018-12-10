@@ -38,7 +38,7 @@ namespace Vostok.Tracing.Hercules.Tests
                 .When(s => s.Put(Arg.Any<string>(), Arg.Any<Action<IHerculesEventBuilder>>()))
                 .Do(info => info.Arg<Action<IHerculesEventBuilder>>().Invoke(builder));
 
-            sender = new HerculesSpanSender(new HerculesSpanSenderConfig(sink, Guid.NewGuid().ToString()));
+            sender = new HerculesSpanSender(new HerculesSpanSenderSettings(sink, Guid.NewGuid().ToString()));
         }
 
         [Test]

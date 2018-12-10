@@ -14,16 +14,16 @@ namespace Vostok.Tracing.Hercules
     [PublicAPI]
     public class HerculesSpanSender : ISpanSender
     {
-        private readonly HerculesSpanSenderConfig config;
+        private readonly HerculesSpanSenderSettings settings;
 
-        public HerculesSpanSender([NotNull] HerculesSpanSenderConfig config)
+        public HerculesSpanSender([NotNull] HerculesSpanSenderSettings settings)
         {
-            this.config = config ?? throw new ArgumentNullException(nameof(config));
+            this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
         public void Send(ISpan span)
         {
-            config.Sink.Put(config.Stream, builder => BuildHerculesEvent(builder, span));
+            settings.Sink.Put(settings.Stream, builder => BuildHerculesEvent(builder, span));
         }
 
         private void BuildHerculesEvent(IHerculesEventBuilder builder, ISpan span)
@@ -57,7 +57,7 @@ namespace Vostok.Tracing.Hercules
                 if (builder.TryAddObject(pair.Key, pair.Value))
                     continue;
 
-                builder.AddValue(pair.Key, ObjectValueFormatter.Format(pair.Value, formatProvider: config.FormatProvider));
+                builder.AddValue(pair.Key, ObjectValueFormatter.Format(pair.Value, formatProvider: settings.FormatProvider));
             }
         }
     }

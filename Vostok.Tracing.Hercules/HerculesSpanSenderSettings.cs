@@ -5,9 +5,9 @@ using Vostok.Hercules.Client.Abstractions;
 namespace Vostok.Tracing.Hercules
 {
     [PublicAPI]
-    public class HerculesSpanSenderConfig
+    public class HerculesSpanSenderSettings
     {
-        public HerculesSpanSenderConfig([NotNull] IHerculesSink sink, [NotNull] string stream)
+        public HerculesSpanSenderSettings([NotNull] IHerculesSink sink, [NotNull] string stream)
         {
             Sink = sink ?? throw new ArgumentNullException(nameof(sink));
             Stream = stream ?? throw new ArgumentNullException(nameof(stream));
