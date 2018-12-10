@@ -12,7 +12,7 @@ using Vostok.Tracing.Abstractions;
 namespace Vostok.Tracing.Hercules.Tests
 {
     [TestFixture]
-    internal class SpanTransfromationTests
+    internal class SpanTransformationTests
     {
         private ISpan originalSpan;
         private ISpan herculesSpan;

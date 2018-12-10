@@ -51,7 +51,7 @@ namespace Vostok.Tracing.Hercules
                 return null;
             }
 
-            var utcTimestamp = EpochHelper.FromGregorianUtcTicks(timestampValue.AsLong);
+            var utcTimestamp = EpochHelper.FromUnixTimeUtcTicks(timestampValue.AsLong);
             var utcOffset = TimeSpan.FromTicks(offsetValue.AsLong);
 
             return new DateTimeOffset(DateTime.SpecifyKind(utcTimestamp + utcOffset, DateTimeKind.Unspecified), utcOffset);
