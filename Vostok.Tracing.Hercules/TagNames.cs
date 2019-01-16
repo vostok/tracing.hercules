@@ -2,20 +2,20 @@
 {
     internal static class TagNames
     {
-        public const string TraceId = nameof(TraceId);
+        public const string TraceId = "traceId";
 
-        public const string SpanId = nameof(SpanId);
+        public const string SpanId = "spanId";
 
-        public const string ParentSpanId = nameof(ParentSpanId);
+        public const string ParentSpanId = "parentSpanId";
 
-        public const string BeginTimestampUtc = nameof(BeginTimestampUtc);
+        public const string BeginTimestampUtc = "beginTimestampUtc";
 
-        public const string BeginTimestampUtcOffset = nameof(BeginTimestampUtcOffset);
+        public const string BeginTimestampUtcOffset = "beginTimestampUtcOffset";
 
-        public const string EndTimestampUtc = nameof(EndTimestampUtc);
+        public const string EndTimestampUtc = "endTimestampUtc";
 
-        public const string EndTimestampUtcOffset = nameof(EndTimestampUtcOffset);
+        public const string EndTimestampUtcOffset = "endTimestampUtcOffset";
 
-        public const string Annotations = nameof(Annotations);
+        public const string Annotations = "annotations";
     }
 }
