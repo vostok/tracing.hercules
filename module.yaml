@@ -16,6 +16,7 @@ notests *default:
     - vostok.tracing.abstractions
     - vostok.commons.time/src
     - vostok.commons.formatting/src
+    - vostok.commons.binary/src
 
 full-build > notests:
   build:
