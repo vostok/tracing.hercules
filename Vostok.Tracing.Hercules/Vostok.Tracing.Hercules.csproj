@@ -19,8 +19,12 @@
     <PackageLicenseUrl>https://github.com/vostok/tracing.hercules/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>vostok vostok.tracing vostok.hercules</PackageTags>
     <RepositoryUrl>https://github.com/vostok/tracing.hercules</RepositoryUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\vostok.commons.binary\Vostok.Commons.Binary\ByteArrayKey.cs" Link="Commons\ByteArrayKey.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\ByReferenceEqualityComparer.cs" Link="Commons\ByReferenceEqualityComparer.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\CachingTransform.cs" Link="Commons\CachingTransform.cs" />
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
   <Import Project="..\..\vostok.commons.formatting\ObjectValueFormatter.props" />
