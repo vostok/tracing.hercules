@@ -13,13 +13,6 @@ namespace Vostok.Tracing.Hercules
     [PublicAPI]
     public class HerculesSpan : ISpan
     {
-        public Guid TraceId { get; }
-        public Guid SpanId { get; }
-        public Guid? ParentSpanId { get; }
-        public DateTimeOffset BeginTimestamp { get; }
-        public DateTimeOffset? EndTimestamp { get; }
-        public IReadOnlyDictionary<string, object> Annotations { get; }
-
         public HerculesSpan(Guid traceId, Guid spanId, Guid? parentSpanId, DateTimeOffset beginTimestamp, DateTimeOffset? endTimestamp, IReadOnlyDictionary<string, object> annotations)
         {
             TraceId = traceId;
@@ -42,6 +35,13 @@ namespace Vostok.Tracing.Hercules
             EndTimestamp = ExtractTimestamp(@event, TagNames.EndTimestampUtc, TagNames.EndTimestampUtcOffset);
             Annotations = @event.Tags.GetValue(TagNames.Annotations).AsContainer.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Value);
         }
+
+        public Guid TraceId { get; }
+        public Guid SpanId { get; }
+        public Guid? ParentSpanId { get; }
+        public DateTimeOffset BeginTimestamp { get; }
+        public DateTimeOffset? EndTimestamp { get; }
+        public IReadOnlyDictionary<string, object> Annotations { get; }
 
         [CanBeNull]
         private static DateTimeOffset? ExtractTimestamp(HerculesEvent @event, string timestampTag, string offsetTag)

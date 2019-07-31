@@ -38,4 +38,17 @@
       <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\netstandard2.0\Vostok.Hercules.Client.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <None Update="SpanAnnotations\HerculesSpanAnnotationsBuilder.Boilerplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HerculesSpanAnnotationsBuilder.Boilerplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="SpanAnnotations\HerculesSpanAnnotationsBuilder.Boilerplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>HerculesSpanAnnotationsBuilder.Boilerplate.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

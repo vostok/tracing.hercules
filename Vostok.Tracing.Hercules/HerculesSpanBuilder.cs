@@ -5,6 +5,7 @@ using Vostok.Commons.Binary;
 using Vostok.Commons.Collections;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
+using Vostok.Tracing.Hercules.SpanAnnotations;
 using Annotations = System.Collections.Generic.IReadOnlyDictionary<string, object>;
 
 namespace Vostok.Tracing.Hercules
@@ -12,13 +13,13 @@ namespace Vostok.Tracing.Hercules
     [PublicAPI]
     public class HerculesSpanBuilder : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesSpan>
     {
+        private static readonly CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>> CacheTransform = new CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>>(
+            _ => new Dictionary<ByteArrayKey, Annotations>());
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private static readonly Annotations EmptyDictionary = new Dictionary<string, object>();
 
         private readonly IBinaryBufferReader reader;
         private readonly Dictionary<ByteArrayKey, Annotations> cache;
-        internal static readonly CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>> CacheTransform = new CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>>(
-            _ => new Dictionary<ByteArrayKey, Annotations>());
 
         private Guid? traceId;
         private Guid? spanId;
@@ -120,7 +121,7 @@ namespace Vostok.Tracing.Hercules
 
             reader.Position = startPosition;
 
-            var builder = new DictionaryHerculesTagsBuilder();
+            var builder = new HerculesSpanAnnotationsBuilder();
             valueBuilder(builder);
             cache[byteKey] = annotations = builder.Dictionary;
         }

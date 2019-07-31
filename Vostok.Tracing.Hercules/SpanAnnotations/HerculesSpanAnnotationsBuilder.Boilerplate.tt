@@ -1,0 +1,45 @@
+<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using Vostok.Hercules.Client.Abstractions.Events;
+
+namespace Vostok.Tracing.Hercules.SpanAnnotations
+{
+    internal partial class HerculesSpanAnnotationsBuilder
+    {
+<#
+    foreach (var type in new [] { 
+        "bool",
+        "byte",
+        "short",
+        "int",
+        "long",
+        "float",
+        "double",
+        "Guid",
+        "string"
+    })
+    {
+#>
+        #region <#=type #>
+
+        public IHerculesTagsBuilder AddValue(string key, <#=type #> value)
+        {
+            Dictionary[key] = value;
+            return this;
+        }
+
+        public IHerculesTagsBuilder AddVector(string key, IReadOnlyList<<#=type #>> values)
+        {
+            Dictionary[key] = values;
+            return this;
+        }
+
+        #endregion
+
+<#
+    }
+#>
+    }
+}
