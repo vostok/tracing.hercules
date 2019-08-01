@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Vostok.Hercules.Client.Abstractions.Events;
 
-namespace Vostok.Tracing.Hercules.SpanAnnotations
+namespace Vostok.Tracing.Hercules.SpanBuilders
 {
     internal partial class HerculesSpanAnnotationsBuilder
     {
