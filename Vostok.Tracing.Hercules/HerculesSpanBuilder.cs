@@ -16,7 +16,6 @@ namespace Vostok.Tracing.Hercules
         private static readonly CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>> CacheTransform = new CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, Annotations>>(
             _ => new Dictionary<ByteArrayKey, Annotations>());
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
-        private static readonly Annotations EmptyDictionary = new Dictionary<string, object>();
 
         private readonly IBinaryBufferReader reader;
         private readonly Dictionary<ByteArrayKey, Annotations> cache;
