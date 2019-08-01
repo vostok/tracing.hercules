@@ -20,7 +20,11 @@ namespace Vostok.Tracing.Hercules
             return builder.BuildEvent();
         }
 
-        public static void Build([NotNull] ISpan span, [NotNull] IHerculesEventBuilder builder, IFormatProvider formatProvider)
+        public static void Build(
+            [NotNull] ISpan span, 
+            [NotNull] IHerculesEventBuilder builder,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] params (string, object)[] additionalAnnotations)
         {
             builder.SetTimestamp(span.EndTimestamp ?? span.BeginTimestamp);
 
@@ -44,7 +48,11 @@ namespace Vostok.Tracing.Hercules
             builder.AddContainer(TagNames.Annotations, tagBuilder => BuildAnnotationsContainer(span, tagBuilder, formatProvider));
         }
 
-        private static void BuildAnnotationsContainer(ISpan span, IHerculesTagsBuilder builder, IFormatProvider formatProvider)
+        private static void BuildAnnotationsContainer(
+            ISpan span, 
+            IHerculesTagsBuilder builder, 
+            IFormatProvider formatProvider,
+            [NotNull] params (string, object)[] additionalAnnotations)
         {
             foreach (var pair in span.Annotations)
             {
@@ -52,6 +60,14 @@ namespace Vostok.Tracing.Hercules
                     continue;
 
                 builder.AddValue(pair.Key, ObjectValueFormatter.Format(pair.Value, formatProvider: formatProvider));
+            }
+
+            foreach (var (key, value) in additionalAnnotations)
+            {
+                if (builder.TryAddObject(key, value))
+                    continue;
+
+                builder.AddValue(key, ObjectValueFormatter.Format(value, formatProvider: formatProvider));
             }
         }
     }
