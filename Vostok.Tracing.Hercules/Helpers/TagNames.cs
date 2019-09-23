@@ -1,4 +1,4 @@
-﻿namespace Vostok.Tracing.Hercules
+﻿namespace Vostok.Tracing.Hercules.Helpers
 {
     internal static class TagNames
     {

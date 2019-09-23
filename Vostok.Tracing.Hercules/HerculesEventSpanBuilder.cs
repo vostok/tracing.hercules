@@ -4,6 +4,7 @@ using Vostok.Commons.Formatting;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Hercules.Helpers;
 
 namespace Vostok.Tracing.Hercules
 {

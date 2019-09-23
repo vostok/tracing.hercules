@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Hercules.Helpers;
 
 // ReSharper disable PossibleInvalidOperationException
 
