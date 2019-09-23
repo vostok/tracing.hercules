@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
+using Vostok.Tracing.Hercules.Helpers;
 
 namespace Vostok.Tracing.Hercules.SpanBuilders
 {
