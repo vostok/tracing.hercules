@@ -65,9 +65,7 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
         {
             if (!Uri.TryCreate(value, UriKind.Absolute, out var url))
                 return;
-            span.ClientNormalizedUrl = value;
-            span.ClientTargetHost = url.Host;
-            span.ClientTargetPort = url.Port;
+            span.Url = url;
         }
     }
 }

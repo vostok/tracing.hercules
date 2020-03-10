@@ -22,6 +22,7 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
             span.UtcTimestamp = BeginTimestamp.UtcDateTime;
             span.DurationTicks = (EndTimestamp - BeginTimestamp)?.Ticks;
 
+
             return span;
         }
 
