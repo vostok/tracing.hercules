@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Vostok.Clusterclient.Core.Model;
 
 namespace Vostok.Tracing.Hercules
 {
@@ -11,6 +12,8 @@ namespace Vostok.Tracing.Hercules
         public DateTimeOffset BeginTimestamp { get; set; }
 
         public DateTimeOffset EndTimestamp { get; set; }
+
+        public TimeSpan Latency => EndTimestamp - BeginTimestamp;
 
         public string Application { get; set; }
 
@@ -24,7 +27,7 @@ namespace Vostok.Tracing.Hercules
 
         public int? RequestSize { get; set; }
 
-        public int? ResponseCode { get; set; }
+        public ResponseCode ResponseCode { get; set; }
 
         public int? ResponseSize { get; set; }
 
