@@ -1,4 +1,5 @@
-﻿using Vostok.Commons.Helpers.Url;
+﻿using Vostok.Clusterclient.Core.Model;
+using Vostok.Commons.Helpers.Url;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 
@@ -48,7 +49,7 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
                     span.RequestSize = value;
                     break;
                 case WellKnownAnnotations.Http.Response.Code:
-                    span.ResponseCode = value;
+                    span.ResponseCode = (ResponseCode)value;
                     break;
                 case WellKnownAnnotations.Http.Response.Size:
                     span.ResponseSize = value;
