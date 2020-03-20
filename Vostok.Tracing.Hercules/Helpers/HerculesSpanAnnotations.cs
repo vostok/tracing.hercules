@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vostok.Hercules.Client.Abstractions.Events;
 
-namespace Vostok.Tracing.Hercules
+namespace Vostok.Tracing.Hercules.Helpers
 {
     internal class HerculesSpanAnnotations : IReadOnlyDictionary<string, object>
     {
