@@ -32,5 +32,8 @@ namespace Vostok.Tracing.Hercules
         public int? ResponseSize { get; set; }
 
         public Uri Url { get; set; }
+
+        public override string ToString() =>
+            $"{nameof(TraceId)}: {TraceId}, {nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Host)}: {Host}, {nameof(TargetEnvironment)}: {TargetEnvironment}, {nameof(TargetService)}: {TargetService}, {nameof(RequestMethod)}: {RequestMethod}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseCode)}: {ResponseCode}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(Url)}: {Url}";
     }
 }
