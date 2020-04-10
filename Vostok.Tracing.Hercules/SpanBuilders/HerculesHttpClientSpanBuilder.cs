@@ -39,10 +39,10 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
                     span.EndTimestamp = EpochHelper.FromUnixTimeUtcTicks(value);
                     break;
                 case TagNames.BeginTimestampUtcOffset:
-                    span.BeginTimestamp = new DateTimeOffset(span.BeginTimestamp.DateTime, TimeSpan.FromTicks(value));
+                    span.BeginTimestamp = Timestamp(span.BeginTimestamp.DateTime, value);
                     break;
                 case TagNames.EndTimestampUtcOffset:
-                    span.EndTimestamp = new DateTimeOffset(span.EndTimestamp.DateTime, TimeSpan.FromTicks(value));
+                    span.EndTimestamp = Timestamp(span.EndTimestamp.DateTime, value);
                     break;
             }
 
@@ -57,6 +57,12 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
                     : DummyBuilder);
 
             return this;
+        }
+
+        private DateTimeOffset Timestamp(DateTime utcTimestamp, long utcOffset)
+        {
+            var offset = TimeSpan.FromTicks(utcOffset);
+            return new DateTimeOffset(DateTime.SpecifyKind(utcTimestamp + offset, DateTimeKind.Unspecified), offset);
         }
     }
 }
