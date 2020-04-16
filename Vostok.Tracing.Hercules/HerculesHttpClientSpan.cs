@@ -25,11 +25,11 @@ namespace Vostok.Tracing.Hercules
 
         public string RequestMethod { get; set; }
 
-        public int? RequestSize { get; set; }
+        public long? RequestSize { get; set; }
 
         public ResponseCode ResponseCode { get; set; }
 
-        public int? ResponseSize { get; set; }
+        public long? ResponseSize { get; set; }
 
         public Uri Url { get; set; }
 
