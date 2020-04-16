@@ -7,7 +7,7 @@ using Vostok.Tracing.Hercules.Helpers;
 namespace Vostok.Tracing.Hercules.SpanBuilders
 {
     [PublicAPI]
-    public class HerculesHttpClientSpanBuilder : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesHttpClientSpan>
+    public class HerculesHttpClientSpanReader : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesHttpClientSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesHttpClientSpan span = new HerculesHttpClientSpan();
@@ -53,7 +53,7 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
         {
             valueBuilder(
                 key == TagNames.Annotations
-                    ? new HerculesHttpClientSpanAnnotationsBuilder(span)
+                    ? new HerculesHttpClientSpanAnnotationsReader(span)
                     : DummyBuilder);
 
             return this;

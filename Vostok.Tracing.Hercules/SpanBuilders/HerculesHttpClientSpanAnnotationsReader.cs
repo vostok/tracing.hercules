@@ -5,11 +5,11 @@ using Vostok.Tracing.Abstractions;
 
 namespace Vostok.Tracing.Hercules.SpanBuilders
 {
-    internal class HerculesHttpClientSpanAnnotationsBuilder : DummyHerculesTagsBuilder, IHerculesTagsBuilder
+    internal class HerculesHttpClientSpanAnnotationsReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
     {
         private readonly HerculesHttpClientSpan span;
 
-        public HerculesHttpClientSpanAnnotationsBuilder(HerculesHttpClientSpan span)
+        public HerculesHttpClientSpanAnnotationsReader(HerculesHttpClientSpan span)
         {
             this.span = span;
         }
@@ -41,18 +41,27 @@ namespace Vostok.Tracing.Hercules.SpanBuilders
             return this;
         }
 
-        public new IHerculesTagsBuilder AddValue(string key, int value)
+        public new IHerculesTagsBuilder AddValue(string key, long value)
         {
             switch (key)
             {
                 case WellKnownAnnotations.Http.Request.Size:
                     span.RequestSize = value;
                     break;
-                case WellKnownAnnotations.Http.Response.Code:
-                    span.ResponseCode = (ResponseCode)value;
-                    break;
                 case WellKnownAnnotations.Http.Response.Size:
                     span.ResponseSize = value;
+                    break;
+            }
+
+            return this;
+        }
+
+        public new IHerculesTagsBuilder AddValue(string key, int value)
+        {
+            switch (key)
+            {
+                case WellKnownAnnotations.Http.Response.Code:
+                    span.ResponseCode = (ResponseCode)value;
                     break;
             }
 
