@@ -4,7 +4,7 @@ using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Hercules.Helpers;
 
-namespace Vostok.Tracing.Hercules.SpanBuilders
+namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
     public class HerculesHttpClientSpanReader : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesHttpClientSpan>
