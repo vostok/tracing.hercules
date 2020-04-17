@@ -3,7 +3,7 @@ using Vostok.Commons.Helpers.Url;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 
-namespace Vostok.Tracing.Hercules.SpanBuilders
+namespace Vostok.Tracing.Hercules.Readers
 {
     internal class HerculesHttpClientSpanAnnotationsReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
     {
