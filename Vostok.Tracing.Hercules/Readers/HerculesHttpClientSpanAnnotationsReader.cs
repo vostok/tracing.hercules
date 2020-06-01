@@ -2,6 +2,7 @@
 using Vostok.Commons.Helpers.Url;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers
 {
@@ -25,7 +26,7 @@ namespace Vostok.Tracing.Hercules.Readers
                     span.Host = value;
                     break;
                 case WellKnownAnnotations.Http.Request.Url:
-                    span.Url = UrlParser.Parse(value);
+                    span.RequestUrl = UrlParser.Parse(value);
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
                     span.RequestMethod = value;

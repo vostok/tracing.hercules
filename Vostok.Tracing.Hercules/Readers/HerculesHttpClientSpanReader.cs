@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Hercules.Helpers;
+using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers
 {

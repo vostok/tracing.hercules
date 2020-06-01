@@ -1,11 +1,10 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Vostok.Clusterclient.Core.Model;
 
-namespace Vostok.Tracing.Hercules
+namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public class HerculesHttpClientSpan
+    public abstract class HerculesHttpSpan
     {
         public Guid TraceId { get; set; }
 
@@ -27,13 +26,11 @@ namespace Vostok.Tracing.Hercules
 
         public long? RequestSize { get; set; }
 
-        public ResponseCode ResponseCode { get; set; }
-
         public long? ResponseSize { get; set; }
 
-        public Uri Url { get; set; }
+        public Uri RequestUrl { get; set; }
 
         public override string ToString() =>
-            $"{nameof(TraceId)}: {TraceId}, {nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Host)}: {Host}, {nameof(TargetEnvironment)}: {TargetEnvironment}, {nameof(TargetService)}: {TargetService}, {nameof(RequestMethod)}: {RequestMethod}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseCode)}: {ResponseCode}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(Url)}: {Url}";
+            $"{nameof(TraceId)}: {TraceId}, {nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Host)}: {Host}, {nameof(TargetEnvironment)}: {TargetEnvironment}, {nameof(TargetService)}: {TargetService}, {nameof(RequestMethod)}: {RequestMethod}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(RequestUrl)}: {RequestUrl}";
     }
 }
