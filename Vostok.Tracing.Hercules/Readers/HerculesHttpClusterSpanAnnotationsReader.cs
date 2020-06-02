@@ -1,4 +1,5 @@
-﻿using Vostok.Commons.Helpers.Url;
+﻿using System;
+using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Models;
@@ -25,7 +26,7 @@ namespace Vostok.Tracing.Hercules.Readers
                     span.Host = value;
                     break;
                 case WellKnownAnnotations.Http.Request.Url:
-                    span.RequestUrl = UrlParser.Parse(value);
+                    span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var parsed) ? null : parsed;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
                     span.RequestMethod = value;
@@ -56,6 +57,18 @@ namespace Vostok.Tracing.Hercules.Readers
                     break;
                 case WellKnownAnnotations.Http.Response.Size:
                     span.ResponseSize = value;
+                    break;
+            }
+
+            return this;
+        }
+
+        public new IHerculesTagsBuilder AddValue(string key, int value)
+        {
+            switch (key)
+            {
+                case WellKnownAnnotations.Http.Response.Code:
+                    span.ResponseCode = (ResponseCode)value;
                     break;
             }
 
