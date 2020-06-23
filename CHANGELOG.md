@@ -1,4 +1,4 @@
-## 0.1.1 (23-06-2020):
+## 0.1.2 (23-06-2020):
 
 Added `HerculesHttpClientSpan` and `HerculesHttpClusterSpan` models.
 
