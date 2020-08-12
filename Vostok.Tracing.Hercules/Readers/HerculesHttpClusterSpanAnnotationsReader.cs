@@ -22,6 +22,9 @@ namespace Vostok.Tracing.Hercules.Readers
                 case WellKnownAnnotations.Common.Application:
                     span.Application = value;
                     break;
+                case WellKnownAnnotations.Common.Environment:
+                    span.Environment = value;
+                    break;
                 case WellKnownAnnotations.Common.Host:
                     span.Host = value;
                     break;
