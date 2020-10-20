@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
@@ -8,14 +8,14 @@ using Vostok.Tracing.Hercules.Models;
 namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
-    public class HerculesHttpClusterSpanReader : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesHttpClusterSpan>
+    public class HerculesCustomClusterSpanReader: DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesCustomClusterSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
-        private readonly HerculesHttpClusterSpan span = new HerculesHttpClusterSpan();
+        private readonly HerculesCustomClusterSpan span = new HerculesCustomClusterSpan();
 
-        public IHerculesEventBuilder<HerculesHttpClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;
+        public IHerculesEventBuilder<HerculesCustomClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;
 
-        public HerculesHttpClusterSpan BuildEvent() => span;
+        public HerculesCustomClusterSpan BuildEvent() => span;
 
         public new IHerculesTagsBuilder AddValue(string key, Guid value)
         {
@@ -54,7 +54,7 @@ namespace Vostok.Tracing.Hercules.Readers
         {
             valueBuilder(
                 key == TagNames.Annotations
-                    ? new HerculesHttpClusterSpanAnnotationsReader(span)
+                    ? new HerculesCustomClusterSpanAnnotationsReader(span)
                     : DummyBuilder);
 
             return this;
