@@ -26,6 +26,9 @@ namespace Vostok.Tracing.Hercules.Readers
                 case WellKnownAnnotations.Common.Host:
                     span.Host = value;
                     break;
+                case WellKnownAnnotations.Common.Status:
+                    span.ResponseStatus = value;
+                    break;
                 case WellKnownAnnotations.Custom.Response.Status:
                     span.ResponseStatus = value;
                     break;
@@ -47,10 +50,10 @@ namespace Vostok.Tracing.Hercules.Readers
         {
             switch (key)
             {
-                case WellKnownAnnotations.Http.Request.Size:
+                case WellKnownAnnotations.Custom.Request.Size:
                     span.RequestSize = value;
                     break;
-                case WellKnownAnnotations.Http.Response.Size:
+                case WellKnownAnnotations.Custom.Response.Size:
                     span.ResponseSize = value;
                     break;
             }
