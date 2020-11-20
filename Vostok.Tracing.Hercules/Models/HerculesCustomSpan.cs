@@ -15,6 +15,8 @@ namespace Vostok.Tracing.Hercules.Models
         public TimeSpan Latency => EndTimestamp - BeginTimestamp;
 
         public string Component { get; set; }
+        
+        public string Operation { get; set; }
 
         public string Application { get; set; }
 
@@ -26,15 +28,15 @@ namespace Vostok.Tracing.Hercules.Models
 
         public string TargetService { get; set; }
 
-        public string ResponseStatus { get; set; }
+        public string Status { get; set; }
 
-        public string WellKnownResponseStatus { get; set; }
+        public string CommonStatus { get; set; }
 
         public long? RequestSize { get; set; }
 
         public long? ResponseSize { get; set; }
 
         public override string ToString() =>
-            $"{nameof(TraceId)}: {TraceId},{nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Environment)}: {Environment}, {nameof(Host)}: {Host}, {nameof(TargetEnvironment)}: {TargetEnvironment}, {nameof(TargetService)}: {TargetService}, {nameof(Component)}: {Component}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(ResponseStatus)}: {ResponseStatus}, {nameof(WellKnownResponseStatus)}: {WellKnownResponseStatus}";
+            $"{nameof(TraceId)}: {TraceId},{nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Environment)}: {Environment}, {nameof(Host)}: {Host}, {nameof(TargetEnvironment)}: {TargetEnvironment}, {nameof(TargetService)}: {TargetService}, {nameof(Component)}: {Component}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(Status)}: {Status}, {nameof(CommonStatus)}: {CommonStatus}";
     }
 }
