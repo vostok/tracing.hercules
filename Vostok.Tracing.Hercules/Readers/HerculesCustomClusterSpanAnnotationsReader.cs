@@ -26,15 +26,20 @@ namespace Vostok.Tracing.Hercules.Readers
                 case WellKnownAnnotations.Common.Host:
                     span.Host = value;
                     break;
-                case WellKnownAnnotations.Common.Status:
-                    span.ResponseStatus = value;
-                    break;
-                case WellKnownAnnotations.Custom.Response.Status:
-                    span.ResponseStatus = value;
-                    break;
                 case WellKnownAnnotations.Common.Component:
                     span.Component = value;
                     break;
+                case WellKnownAnnotations.Common.Status:
+                    span.CommonStatus = value;
+                    break;
+                case WellKnownAnnotations.Common.Operation:
+                    span.Operation = value;
+                    break;
+                
+                case WellKnownAnnotations.Custom.Response.Status:
+                    span.Status = value;
+                    break;
+                
                 case WellKnownAnnotations.Custom.Request.TargetEnvironment:
                     span.TargetEnvironment = value;
                     break;
