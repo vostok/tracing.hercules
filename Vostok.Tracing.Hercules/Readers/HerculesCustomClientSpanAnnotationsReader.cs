@@ -30,10 +30,10 @@ namespace Vostok.Tracing.Hercules.Readers
                     span.Operation = value;
                     break;
                 case WellKnownAnnotations.Common.Status:
-                    span.CommonStatus = value;
+                    span.WellKnownStatus = value;
                     break;
                 case WellKnownAnnotations.Custom.Response.Status:
-                    span.Status = value;
+                    span.CustomStatus = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.Replica:
                     span.Replica = value;
