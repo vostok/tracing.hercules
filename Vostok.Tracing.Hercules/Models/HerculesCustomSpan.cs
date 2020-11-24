@@ -1,36 +1,16 @@
-using System;
 using JetBrains.Annotations;
 
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public abstract class HerculesCustomSpan
+    public abstract class HerculesCustomSpan: HerculesCommonSpan
     {
-        public Guid TraceId { get; set; }
-
-        public DateTimeOffset BeginTimestamp { get; set; }
-
-        public DateTimeOffset EndTimestamp { get; set; }
-        
-        public TimeSpan Latency => EndTimestamp - BeginTimestamp;
-
-        public string Component { get; set; }
-        
-        public string Operation { get; set; }
-
-        public string Application { get; set; }
-
-        public string Environment { get; set; }
-
-        public string Host { get; set; }
 
         public string TargetEnvironment { get; set; }
 
         public string TargetService { get; set; }
 
         public string CustomStatus { get; set; }
-
-        public string WellKnownStatus { get; set; }
 
         public long? RequestSize { get; set; }
 
