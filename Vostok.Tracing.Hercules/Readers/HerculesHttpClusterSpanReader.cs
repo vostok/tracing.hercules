@@ -1,54 +1,26 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Vostok.Commons.Time;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Hercules.Helpers;
 using Vostok.Tracing.Hercules.Models;
+using Vostok.Tracing.Hercules.Readers.AnnotationReaders;
 
 namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
-    public class HerculesHttpClusterSpanReader : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesHttpClusterSpan>
+    public class HerculesHttpClusterSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesHttpClusterSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
-        private readonly HerculesHttpClusterSpan span = new HerculesHttpClusterSpan();
+        private readonly HerculesHttpClusterSpan span;
+        
+        public HerculesHttpClusterSpanReader(): this(new HerculesHttpClusterSpan()) {}
 
-        public IHerculesEventBuilder<HerculesHttpClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;
+        private HerculesHttpClusterSpanReader(HerculesHttpClusterSpan span) : base(span) => 
+            this.span = span;
 
-        public HerculesHttpClusterSpan BuildEvent() => span;
+        public new IHerculesEventBuilder<HerculesHttpClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;
 
-        public new IHerculesTagsBuilder AddValue(string key, Guid value)
-        {
-            switch (key)
-            {
-                case TagNames.TraceId:
-                    span.TraceId = value;
-                    break;
-            }
-
-            return this;
-        }
-
-        public new IHerculesTagsBuilder AddValue(string key, long value)
-        {
-            switch (key)
-            {
-                case TagNames.BeginTimestampUtc:
-                    span.BeginTimestamp = EpochHelper.FromUnixTimeUtcTicks(value);
-                    break;
-                case TagNames.EndTimestampUtc:
-                    span.EndTimestamp = EpochHelper.FromUnixTimeUtcTicks(value);
-                    break;
-                case TagNames.BeginTimestampUtcOffset:
-                    span.BeginTimestamp = DatetimeHelper.Timestamp(span.BeginTimestamp.DateTime, value);
-                    break;
-                case TagNames.EndTimestampUtcOffset:
-                    span.EndTimestamp = DatetimeHelper.Timestamp(span.EndTimestamp.DateTime, value);
-                    break;
-            }
-
-            return this;
-        }
+        public new HerculesHttpClusterSpan BuildEvent() => span;
 
         public new IHerculesTagsBuilder AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
         {
