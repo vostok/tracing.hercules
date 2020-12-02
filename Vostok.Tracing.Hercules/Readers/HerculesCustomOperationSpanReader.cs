@@ -8,19 +8,19 @@ using Vostok.Tracing.Hercules.Readers.AnnotationReaders;
 namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
-    public class HerculesOperationSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesOperationSpan>
+    public class HerculesOperationSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesCustomOperationSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
-        private readonly HerculesOperationSpan span;
+        private readonly HerculesCustomOperationSpan span;
         
-        public HerculesOperationSpanReader(): this(new HerculesOperationSpan()) {}
+        public HerculesOperationSpanReader(): this(new HerculesCustomOperationSpan()) {}
         
-        private HerculesOperationSpanReader(HerculesOperationSpan span): base(span) =>
+        private HerculesOperationSpanReader(HerculesCustomOperationSpan span): base(span) =>
             this.span = span;
         
-        public new IHerculesEventBuilder<HerculesOperationSpan> SetTimestamp(DateTimeOffset timestamp) => this;
+        public new IHerculesEventBuilder<HerculesCustomOperationSpan> SetTimestamp(DateTimeOffset timestamp) => this;
 
-        public new HerculesOperationSpan BuildEvent() => span;
+        public new HerculesCustomOperationSpan BuildEvent() => span;
         
         public new IHerculesTagsBuilder AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
         {

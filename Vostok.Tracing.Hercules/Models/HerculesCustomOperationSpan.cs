@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public class HerculesOperationSpan: HerculesCommonSpan
+    public class HerculesCustomOperationSpan: HerculesCommonSpan
     {
         public string TargetEnvironment { get; set; }
         
