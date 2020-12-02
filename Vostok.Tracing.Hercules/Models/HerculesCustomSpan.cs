@@ -5,7 +5,6 @@ namespace Vostok.Tracing.Hercules.Models
     [PublicAPI]
     public abstract class HerculesCustomSpan: HerculesCommonSpan
     {
-
         public string TargetEnvironment { get; set; }
 
         public string TargetService { get; set; }
