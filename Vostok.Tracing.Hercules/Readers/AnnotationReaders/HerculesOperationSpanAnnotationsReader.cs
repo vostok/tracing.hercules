@@ -4,11 +4,11 @@ using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
-    internal class HerculesCustomSpanAnnotationsReader: HerculesCommonSpanAnnotationsReader, IHerculesTagsBuilder
+    internal class HerculesOperationSpanAnnotationsReader : HerculesCommonSpanAnnotationsReader
     {
-        private readonly HerculesCustomSpan span;
+        private readonly HerculesOperationSpan span;
 
-        public HerculesCustomSpanAnnotationsReader(HerculesCustomSpan span) : base(span)
+        public HerculesOperationSpanAnnotationsReader(HerculesOperationSpan span) : base(span)
         {
             this.span = span;
         }
@@ -17,13 +17,13 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case WellKnownAnnotations.Custom.Response.Status:
+                case WellKnownAnnotations.Custom.Operation.Status:
                     span.CustomStatus = value;
                     break;
-                case WellKnownAnnotations.Custom.Request.TargetEnvironment:
+                case WellKnownAnnotations.Custom.Operation.TargetEnvironment:
                     span.TargetEnvironment = value;
                     break;
-                case WellKnownAnnotations.Custom.Request.TargetService:
+                case WellKnownAnnotations.Custom.Operation.TargetService:
                     span.TargetService = value;
                     break;
                 default:
@@ -38,11 +38,8 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case WellKnownAnnotations.Custom.Request.Size:
-                    span.RequestSize = value;
-                    break;
-                case WellKnownAnnotations.Custom.Response.Size:
-                    span.ResponseSize = value;
+                case WellKnownAnnotations.Custom.Operation.Size:
+                    span.Size = value;
                     break;
             }
 
