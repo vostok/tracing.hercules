@@ -26,7 +26,7 @@ namespace Vostok.Tracing.Hercules.Readers
         {
             valueBuilder(
                 key == TagNames.Annotations
-                    ? new HerculesOperationSpanAnnotationsReader(span)
+                    ? new HerculesCustomOperationSpanAnnotationsReader(span)
                     : DummyBuilder);
 
             return this;
