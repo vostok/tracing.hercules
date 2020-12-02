@@ -6,9 +6,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
     internal class HerculesOperationSpanAnnotationsReader : HerculesCommonSpanAnnotationsReader
     {
-        private readonly HerculesOperationSpan span;
+        private readonly HerculesCustomOperationSpan span;
 
-        public HerculesOperationSpanAnnotationsReader(HerculesOperationSpan span) : base(span)
+        public HerculesOperationSpanAnnotationsReader(HerculesCustomOperationSpan span) : base(span)
         {
             this.span = span;
         }
