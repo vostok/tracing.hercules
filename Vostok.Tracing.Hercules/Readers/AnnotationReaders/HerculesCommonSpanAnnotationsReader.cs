@@ -33,6 +33,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case WellKnownAnnotations.Common.Component:
                     span.Component = value;
                     break;
+                default:
+                    base.AddValue(key, value);
+                    break;
             }
 
             return this;

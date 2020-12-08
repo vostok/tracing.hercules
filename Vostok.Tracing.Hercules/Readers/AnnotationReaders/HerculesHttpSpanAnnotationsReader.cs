@@ -47,6 +47,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case WellKnownAnnotations.Http.Response.Size:
                     span.ResponseSize = value;
                     break;
+                default:
+                    base.AddValue(key, value);
+                    break;
             }
 
             return this;
@@ -58,6 +61,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             {
                 case WellKnownAnnotations.Http.Response.Code:
                     span.ResponseCode = (ResponseCode)value;
+                    break;
+                default:
+                    base.AddValue(key, value);
                     break;
             }
 

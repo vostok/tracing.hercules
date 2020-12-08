@@ -25,6 +25,9 @@ namespace Vostok.Tracing.Hercules.Readers
                 case TagNames.TraceId:
                     span.TraceId = value;
                     break;
+                default:
+                    base.AddValue(key, value);
+                    break;
             }
 
             return this;
@@ -45,6 +48,9 @@ namespace Vostok.Tracing.Hercules.Readers
                     break;
                 case TagNames.EndTimestampUtcOffset:
                     span.EndTimestamp = DatetimeHelper.Timestamp(span.EndTimestamp.DateTime, value);
+                    break;
+                default:
+                    base.AddValue(key, value);
                     break;
             }
 
