@@ -41,6 +41,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case WellKnownAnnotations.Custom.Operation.Size:
                     span.Size = value;
                     break;
+                default:
+                    base.AddValue(key, value);
+                    break;
             }
 
             return this;
