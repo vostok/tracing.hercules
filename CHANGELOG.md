@@ -1,3 +1,7 @@
+## 0.1.4 (20-01-2020):
+
+Added non http span models.
+
 ## 0.1.3 (11-08-2020):
 
 Added `Environment` field to `HerculesHttpSpan`.
