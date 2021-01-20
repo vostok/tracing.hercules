@@ -18,22 +18,22 @@ namespace Vostok.Tracing.Hercules.Tests
 
             reader.AddValue(TagNames.TraceId, traceId);
             reader.AddContainer(
-                TagNames.Annotations, 
+                TagNames.Annotations,
                 builder => builder
                     .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
                     .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
                     .AddValue(WellKnownAnnotations.Http.Cluster.Strategy, "bar"));
-            
+
             var span = reader.BuildEvent();
-            
+
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.ResponseCode.Should().Be(200);
             span.TargetService.Should().Be("baz");
             span.Strategy.Should().Be("bar");
         }
-        
+
         [Test]
         public void Should_fill_http_client_annotations()
         {
@@ -49,13 +49,13 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz"));
 
             var span = reader.BuildEvent();
-            
+
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.ResponseCode.Should().Be(200);
             span.TargetService.Should().Be("baz");
         }
-        
+
         [Test]
         public void Should_fill_custom_client_annotations()
         {
@@ -71,7 +71,7 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz"));
 
             var span = reader.BuildEvent();
-            
+
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.Replica.Should().Be("bar");
@@ -92,12 +92,12 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz"));
 
             var span = reader.BuildEvent();
-            
+
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.TargetService.Should().Be("baz");
         }
-        
+
         [Test]
         public void Should_fill_custom_operation_annotations()
         {
@@ -113,7 +113,7 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Custom.Operation.Status, "bar"));
 
             var span = reader.BuildEvent();
-            
+
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.TargetService.Should().Be("baz");

@@ -5,7 +5,7 @@ using Vostok.Clusterclient.Core.Model;
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public abstract class HerculesHttpSpan: HerculesCommonSpan
+    public abstract class HerculesHttpSpan : HerculesCommonSpan
     {
         public string TargetEnvironment { get; set; }
 
@@ -18,7 +18,7 @@ namespace Vostok.Tracing.Hercules.Models
         public long? ResponseSize { get; set; }
 
         public ResponseCode ResponseCode { get; set; }
-        
+
         public Uri RequestUrl { get; set; }
 
         public override string ToString() =>

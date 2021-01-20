@@ -13,16 +13,17 @@ namespace Vostok.Tracing.Hercules.Models
         public DateTimeOffset EndTimestamp { get; set; }
 
         public TimeSpan Latency => EndTimestamp - BeginTimestamp;
+
         public string Operation { get; set; }
-        
+
         public string WellKnownStatus { get; set; }
-        
+
         public string Application { get; set; }
-        
+
         public string Environment { get; set; }
-        
+
         public string Host { get; set; }
-        
+
         public string Component { get; set; }
 
         public override string ToString() =>

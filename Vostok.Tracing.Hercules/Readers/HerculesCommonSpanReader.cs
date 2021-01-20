@@ -8,7 +8,7 @@ using Vostok.Tracing.Hercules.Models;
 namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
-    public abstract class HerculesCommonSpanReader: DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesCommonSpan>
+    public abstract class HerculesCommonSpanReader : DummyHerculesTagsBuilder, IHerculesEventBuilder<HerculesCommonSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesCommonSpan span;

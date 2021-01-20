@@ -8,14 +8,18 @@ using Vostok.Tracing.Hercules.Readers.AnnotationReaders;
 namespace Vostok.Tracing.Hercules.Readers
 {
     [PublicAPI]
-    public class HerculesCustomClusterSpanReader: HerculesCommonSpanReader, IHerculesEventBuilder<HerculesCustomClusterSpan>
+    public class HerculesCustomClusterSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesCustomClusterSpan>
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesCustomClusterSpan span;
-        
-        public HerculesCustomClusterSpanReader(): this(new HerculesCustomClusterSpan()) {}
-        
-        private HerculesCustomClusterSpanReader(HerculesCustomClusterSpan span) : base(span) =>
+
+        public HerculesCustomClusterSpanReader()
+            : this(new HerculesCustomClusterSpan())
+        {
+        }
+
+        private HerculesCustomClusterSpanReader(HerculesCustomClusterSpan span)
+            : base(span) =>
             this.span = span;
 
         public new IHerculesEventBuilder<HerculesCustomClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;

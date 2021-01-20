@@ -10,7 +10,8 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
     {
         private readonly HerculesHttpSpan span;
 
-        protected HerculesHttpSpanAnnotationsReader(HerculesHttpSpan span) : base(span) =>
+        protected HerculesHttpSpanAnnotationsReader(HerculesHttpSpan span)
+            : base(span) =>
             this.span = span;
 
         public new IHerculesTagsBuilder AddValue(string key, string value)
