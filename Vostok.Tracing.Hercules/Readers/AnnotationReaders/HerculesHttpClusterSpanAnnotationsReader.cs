@@ -8,7 +8,8 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
     {
         private readonly HerculesHttpClusterSpan span;
 
-        public HerculesHttpClusterSpanAnnotationsReader(HerculesHttpClusterSpan span) : base(span)
+        public HerculesHttpClusterSpanAnnotationsReader(HerculesHttpClusterSpan span)
+            : base(span)
         {
             this.span = span;
         }

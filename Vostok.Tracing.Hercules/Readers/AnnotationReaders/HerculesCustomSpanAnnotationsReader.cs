@@ -4,11 +4,12 @@ using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
-    internal class HerculesCustomSpanAnnotationsReader: HerculesCommonSpanAnnotationsReader, IHerculesTagsBuilder
+    internal class HerculesCustomSpanAnnotationsReader : HerculesCommonSpanAnnotationsReader, IHerculesTagsBuilder
     {
         private readonly HerculesCustomSpan span;
 
-        public HerculesCustomSpanAnnotationsReader(HerculesCustomSpan span) : base(span)
+        public HerculesCustomSpanAnnotationsReader(HerculesCustomSpan span)
+            : base(span)
         {
             this.span = span;
         }

@@ -12,10 +12,14 @@ namespace Vostok.Tracing.Hercules.Readers
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesHttpClusterSpan span;
-        
-        public HerculesHttpClusterSpanReader(): this(new HerculesHttpClusterSpan()) {}
 
-        private HerculesHttpClusterSpanReader(HerculesHttpClusterSpan span) : base(span) => 
+        public HerculesHttpClusterSpanReader()
+            : this(new HerculesHttpClusterSpan())
+        {
+        }
+
+        private HerculesHttpClusterSpanReader(HerculesHttpClusterSpan span)
+            : base(span) =>
             this.span = span;
 
         public new IHerculesEventBuilder<HerculesHttpClusterSpan> SetTimestamp(DateTimeOffset timestamp) => this;

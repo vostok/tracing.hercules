@@ -12,16 +12,20 @@ namespace Vostok.Tracing.Hercules.Readers
     {
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesCustomOperationSpan span;
-        
-        public HerculesCustomOperationSpanReader(): this(new HerculesCustomOperationSpan()) {}
-        
-        private HerculesCustomOperationSpanReader(HerculesCustomOperationSpan span): base(span) =>
+
+        public HerculesCustomOperationSpanReader()
+            : this(new HerculesCustomOperationSpan())
+        {
+        }
+
+        private HerculesCustomOperationSpanReader(HerculesCustomOperationSpan span)
+            : base(span) =>
             this.span = span;
-        
+
         public new IHerculesEventBuilder<HerculesCustomOperationSpan> SetTimestamp(DateTimeOffset timestamp) => this;
 
         public new HerculesCustomOperationSpan BuildEvent() => span;
-        
+
         public new IHerculesTagsBuilder AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
         {
             valueBuilder(

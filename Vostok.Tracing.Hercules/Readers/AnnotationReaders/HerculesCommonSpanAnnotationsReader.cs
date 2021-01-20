@@ -4,7 +4,7 @@ using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
-    internal abstract class HerculesCommonSpanAnnotationsReader: DummyHerculesTagsBuilder, IHerculesTagsBuilder
+    internal abstract class HerculesCommonSpanAnnotationsReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
     {
         private readonly HerculesCommonSpan span;
 
@@ -40,6 +40,5 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 
             return this;
         }
-
     }
 }

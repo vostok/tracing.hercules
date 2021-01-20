@@ -177,19 +177,19 @@ namespace Vostok.Tracing.Hercules.Tests
             originalSpan.Annotations.Returns(
                 new Dictionary<string, object>
                 {
-                    ["key1"] = new [] {byte.MinValue},
-                    ["key2"] = new [] {true},
-                    ["key3"] = new [] {short.MaxValue},
-                    ["key4"] = new [] {int.MaxValue},
-                    ["key5"] = new [] {long.MaxValue},
-                    ["key6"] = new [] {float.MaxValue},
-                    ["key7"] = new [] {double.MaxValue},
-                    ["key8"] = new [] {Guid.NewGuid()},
+                    ["key1"] = new[] {byte.MinValue},
+                    ["key2"] = new[] {true},
+                    ["key3"] = new[] {short.MaxValue},
+                    ["key4"] = new[] {int.MaxValue},
+                    ["key5"] = new[] {long.MaxValue},
+                    ["key6"] = new[] {float.MaxValue},
+                    ["key7"] = new[] {double.MaxValue},
+                    ["key8"] = new[] {Guid.NewGuid()},
                     ["key9"] = new[] {Guid.NewGuid().ToString()}
                 });
-        
+
             TransformSpan();
-        
+
             herculesSpan.Annotations.Should().BeEquivalentTo(originalSpan.Annotations);
         }
 
@@ -199,7 +199,7 @@ namespace Vostok.Tracing.Hercules.Tests
             originalSpan.Annotations.Returns(
                 new Dictionary<string, object>
                 {
-                    ["key1"] = new { A = 1, B = 2},
+                    ["key1"] = new {A = 1, B = 2},
                     ["key2"] = IPAddress.Parse("154.31.215.11")
                 });
 
@@ -209,7 +209,6 @@ namespace Vostok.Tracing.Hercules.Tests
             herculesSpan.Annotations["key1"].Should().Be("{\"A\": \"1\", \"B\": \"2\"}");
             herculesSpan.Annotations["key2"].Should().Be("154.31.215.11");
         }
-
 
         [Test]
         public void Should_correctly_transform_annotations_with_null_values()

@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public class HerculesCustomClientSpan: HerculesCustomSpan
+    public class HerculesCustomClientSpan : HerculesCustomSpan
     {
         public string Replica { get; set; }
 
