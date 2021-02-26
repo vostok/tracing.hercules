@@ -7,6 +7,10 @@ namespace Vostok.Tracing.Hercules.Models
     {
         public string Replica { get; set; }
 
+        public long? RequestSize { get; set; }
+
+        public long? ResponseSize { get; set; }
+        
         public override string ToString() =>
             $"{base.ToString()}, {nameof(Replica)}: {Replica}";
     }

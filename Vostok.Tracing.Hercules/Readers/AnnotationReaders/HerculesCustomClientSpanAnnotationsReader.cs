@@ -28,5 +28,23 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 
             return this;
         }
+        
+        public new IHerculesTagsBuilder AddValue(string key, long value)
+        {
+            switch (key)
+            {
+                case WellKnownAnnotations.Custom.Request.Size:
+                    span.RequestSize = value;
+                    break;
+                case WellKnownAnnotations.Custom.Response.Size:
+                    span.ResponseSize = value;
+                    break;
+                default:
+                    base.AddValue(key, value);
+                    break;
+            }
+
+            return this;
+        }
     }
 }
