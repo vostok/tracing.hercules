@@ -4,7 +4,7 @@ using Vostok.Tracing.Hercules.Models;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
-    internal class HerculesCustomOperationSpanAnnotationsReader : HerculesCommonSpanAnnotationsReader, IHerculesTagsBuilder
+    internal class HerculesCustomOperationSpanAnnotationsReader : HerculesCustomSpanAnnotationsReader
     {
         private readonly HerculesCustomOperationSpan span;
 
@@ -12,27 +12,6 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             : base(span)
         {
             this.span = span;
-        }
-
-        public new IHerculesTagsBuilder AddValue(string key, string value)
-        {
-            switch (key)
-            {
-                case WellKnownAnnotations.Custom.Operation.Status:
-                    span.CustomStatus = value;
-                    break;
-                case WellKnownAnnotations.Custom.Operation.TargetEnvironment:
-                    span.TargetEnvironment = value;
-                    break;
-                case WellKnownAnnotations.Custom.Operation.TargetService:
-                    span.TargetService = value;
-                    break;
-                default:
-                    base.AddValue(key, value);
-                    break;
-            }
-
-            return this;
         }
 
         public new IHerculesTagsBuilder AddValue(string key, long value)
