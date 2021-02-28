@@ -19,6 +19,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Custom.Response.Status:
+                case WellKnownAnnotations.Custom.Operation.Status:
                     span.CustomStatus = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.TargetEnvironment:
