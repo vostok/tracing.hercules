@@ -22,9 +22,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.CustomStatus = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.TargetEnvironment:
+                case WellKnownAnnotations.Custom.Operation.TargetEnvironment:
                     span.TargetEnvironment = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.TargetService:
+                case WellKnownAnnotations.Custom.Operation.TargetService:
                     span.TargetService = value;
                     break;
                 default:
