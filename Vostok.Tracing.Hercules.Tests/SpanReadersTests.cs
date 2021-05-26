@@ -24,8 +24,8 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
                     .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
                     .AddValue(WellKnownAnnotations.Http.Cluster.Strategy, "bar")
-                    .AddValue(WellKnownAnnotations.Http.Request.Size, 10L))
-                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L);
+                    .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
@@ -50,9 +50,9 @@ namespace Vostok.Tracing.Hercules.Tests
                 builder => builder
                     .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
-                    .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz"))
+                    .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
                     .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
-                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L);
+                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
@@ -77,8 +77,8 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Custom.Request.Replica, "bar")
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz")
-                    .AddValue(WellKnownAnnotations.Custom.Request.Size, 10L))
-                    .AddValue(WellKnownAnnotations.Custom.Response.Size, 20L);
+                    .AddValue(WellKnownAnnotations.Custom.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Custom.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
