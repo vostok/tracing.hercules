@@ -23,7 +23,9 @@ namespace Vostok.Tracing.Hercules.Tests
                     .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
                     .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
-                    .AddValue(WellKnownAnnotations.Http.Cluster.Strategy, "bar"));
+                    .AddValue(WellKnownAnnotations.Http.Cluster.Strategy, "bar")
+                    .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
@@ -32,6 +34,8 @@ namespace Vostok.Tracing.Hercules.Tests
             span.ResponseCode.Should().Be(200);
             span.TargetService.Should().Be("baz");
             span.Strategy.Should().Be("bar");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
         }
 
         [Test]
@@ -46,7 +50,9 @@ namespace Vostok.Tracing.Hercules.Tests
                 builder => builder
                     .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
-                    .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz"));
+                    .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
+                    .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
@@ -54,6 +60,8 @@ namespace Vostok.Tracing.Hercules.Tests
             span.TraceId.Should().Be(traceId);
             span.ResponseCode.Should().Be(200);
             span.TargetService.Should().Be("baz");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
         }
 
         [Test]
@@ -68,7 +76,9 @@ namespace Vostok.Tracing.Hercules.Tests
                 builder => builder
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Custom.Request.Replica, "bar")
-                    .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz"));
+                    .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz")
+                    .AddValue(WellKnownAnnotations.Custom.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Custom.Response.Size, 20L));
 
             var span = reader.BuildEvent();
 
@@ -76,6 +86,8 @@ namespace Vostok.Tracing.Hercules.Tests
             span.TraceId.Should().Be(traceId);
             span.Replica.Should().Be("bar");
             span.TargetService.Should().Be("baz");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
         }
 
         [Test]
@@ -89,13 +101,17 @@ namespace Vostok.Tracing.Hercules.Tests
                 TagNames.Annotations,
                 builder => builder
                     .AddValue(WellKnownAnnotations.Custom.Request.TargetEnvironment, "foo")
-                    .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz"));
+                    .AddValue(WellKnownAnnotations.Custom.Request.TargetService, "baz")
+                    .AddValue(WellKnownAnnotations.Custom.Request.Size, 10L)
+                    .AddValue(WellKnownAnnotations.Custom.Response.Size, 20L));
 
             var span = reader.BuildEvent();
-
+            
             span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.TargetService.Should().Be("baz");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
         }
 
         [Test]
@@ -110,7 +126,8 @@ namespace Vostok.Tracing.Hercules.Tests
                 builder => builder
                     .AddValue(WellKnownAnnotations.Custom.Operation.TargetEnvironment, "foo")
                     .AddValue(WellKnownAnnotations.Custom.Operation.TargetService, "baz")
-                    .AddValue(WellKnownAnnotations.Custom.Operation.Status, "bar"));
+                    .AddValue(WellKnownAnnotations.Custom.Operation.Status, "bar")
+                    .AddValue(WellKnownAnnotations.Custom.Operation.Size, 10L));
 
             var span = reader.BuildEvent();
 
@@ -118,6 +135,7 @@ namespace Vostok.Tracing.Hercules.Tests
             span.TraceId.Should().Be(traceId);
             span.TargetService.Should().Be("baz");
             span.CustomStatus.Should().Be("bar");
+            span.Size.Should().Be(10L);
         }
     }
 }
