@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
 using Vostok.Tracing.Abstractions;
@@ -136,6 +137,39 @@ namespace Vostok.Tracing.Hercules.Tests
             span.TargetService.Should().Be("baz");
             span.CustomStatus.Should().Be("bar");
             span.Size.Should().Be(10L);
+        }
+
+        [Test]
+        public void Should_fill_http_server_annotations()
+        {
+            var reader = new HerculesHttpServerSpanReader();
+            var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
+            var ipAddress = IPAddress.Loopback;
+            var clientName = "zapad";
+
+            reader.AddValue(TagNames.TraceId, traceId);
+            reader.AddContainer(
+                TagNames.Annotations,
+                builder => builder
+                   .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
+                   .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
+                   .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
+                   .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
+                   .AddValue(WellKnownAnnotations.Http.Response.Size, 20L)
+                   .AddValue(WellKnownAnnotations.Http.Client.Address, ipAddress.ToString())
+                   .AddValue(WellKnownAnnotations.Http.Client.Name, clientName)
+                );
+
+            var span = reader.BuildEvent();
+
+            span.TargetEnvironment.Should().Be("foo");
+            span.TraceId.Should().Be(traceId);
+            span.ResponseCode.Should().Be(200);
+            span.TargetService.Should().Be("baz");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
+            span.ClientAddress.Should().Be(ipAddress);
+            span.ClientName.Should().Be(clientName);
         }
     }
 }
