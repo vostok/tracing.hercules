@@ -151,9 +151,9 @@ namespace Vostok.Tracing.Hercules.Tests
             reader.AddContainer(
                 TagNames.Annotations,
                 builder => builder
-                   .AddValue(WellKnownAnnotations.Http.Request.TargetEnvironment, "foo")
+                   .AddValue(WellKnownAnnotations.Common.Environment, "foo")
                    .AddValue(WellKnownAnnotations.Http.Response.Code, 200)
-                   .AddValue(WellKnownAnnotations.Http.Request.TargetService, "baz")
+                   .AddValue(WellKnownAnnotations.Common.Application, "baz")
                    .AddValue(WellKnownAnnotations.Http.Request.Size, 10L)
                    .AddValue(WellKnownAnnotations.Http.Response.Size, 20L)
                    .AddValue(WellKnownAnnotations.Http.Client.Address, ipAddress.ToString())
@@ -162,8 +162,10 @@ namespace Vostok.Tracing.Hercules.Tests
 
             var span = reader.BuildEvent();
 
+            span.Environment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.ResponseCode.Should().Be(200);
+            span.Application.Should().Be("baz");
             span.RequestSize.Should().Be(10L);
             span.ResponseSize.Should().Be(20L);
             span.ClientAddress.Should().Be(ipAddress);

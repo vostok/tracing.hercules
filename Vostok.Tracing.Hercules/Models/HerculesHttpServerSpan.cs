@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public class HerculesHttpServerSpan : HerculesHttpBaseSpan
+    public class HerculesHttpServerSpan : HerculesHttpSpan
     {
         public string ClientName { get; set; }
 
