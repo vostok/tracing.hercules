@@ -162,10 +162,8 @@ namespace Vostok.Tracing.Hercules.Tests
 
             var span = reader.BuildEvent();
 
-            span.TargetEnvironment.Should().Be("foo");
             span.TraceId.Should().Be(traceId);
             span.ResponseCode.Should().Be(200);
-            span.TargetService.Should().Be("baz");
             span.RequestSize.Should().Be(10L);
             span.ResponseSize.Should().Be(20L);
             span.ClientAddress.Should().Be(ipAddress);
