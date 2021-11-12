@@ -3,7 +3,7 @@
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public abstract class HerculesHttpTargettedSpan : HerculesHttpSpan
+    public class HerculesHttpTargettedSpan : HerculesHttpSpan
     {
         public string TargetEnvironment { get; set; }
 
