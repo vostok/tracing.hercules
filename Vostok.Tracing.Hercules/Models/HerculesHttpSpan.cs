@@ -5,7 +5,7 @@ using Vostok.Clusterclient.Core.Model;
 namespace Vostok.Tracing.Hercules.Models
 {
     [PublicAPI]
-    public class HerculesHttpSpan : HerculesCommonSpan
+    public abstract class HerculesHttpSpan : HerculesCommonSpan
     {
         public string RequestMethod { get; set; }
 
