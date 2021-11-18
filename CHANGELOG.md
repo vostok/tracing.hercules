@@ -1,3 +1,7 @@
+## 0.1.5 (18-11-2021):
+
+Added `HerculesHttpServerSpan` and corresponding readers.
+
 ## 0.1.4 (20-01-2020):
 
 Added non http span models.
