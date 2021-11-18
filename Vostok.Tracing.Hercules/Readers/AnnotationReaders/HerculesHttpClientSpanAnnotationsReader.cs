@@ -2,9 +2,9 @@
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
-    internal class HerculesHttpClientSpanAnnotationsReader : HerculesHttpSpanAnnotationsReader
+    internal class HerculesHttpClientSpanAnnotationsReader : HerculesHttpTargetedSpanAnnotationsReader
     {
-        public HerculesHttpClientSpanAnnotationsReader(HerculesHttpSpan span)
+        public HerculesHttpClientSpanAnnotationsReader(HerculesHttpTargetedSpan span)
             : base(span)
         {
         }

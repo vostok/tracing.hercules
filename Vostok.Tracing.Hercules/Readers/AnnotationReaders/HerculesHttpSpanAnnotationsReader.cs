@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
@@ -23,12 +23,6 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
                     span.RequestMethod = value;
-                    break;
-                case WellKnownAnnotations.Http.Request.TargetEnvironment:
-                    span.TargetEnvironment = value;
-                    break;
-                case WellKnownAnnotations.Http.Request.TargetService:
-                    span.TargetService = value;
                     break;
                 default:
                     base.AddValue(key, value);
