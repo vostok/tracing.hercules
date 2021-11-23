@@ -26,7 +26,7 @@
     <Compile Include="..\..\vostok.commons.helpers\Vostok.Commons.Helpers\Url\UrlParser.cs" Link="Commons\UrlParser.cs" />
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
-  <Import Project="..\..\vostok.commons.formatting\ObjectValueFormatter.props" Condition="Exists('..\..\vostok.commons.formatting\ObjectValueFormatter.props')" Condition="Exists('..\..\vostok.commons.formatting\ObjectValueFormatter.props')" />
+  <Import Project="..\..\vostok.commons.formatting\ObjectValueFormatter.props" Condition="Exists('..\..\vostok.commons.formatting\ObjectValueFormatter.props')" />
   <ItemGroup>
     <Reference Include="Vostok.Tracing.Abstractions">
       <SpecificVersion>False</SpecificVersion>
