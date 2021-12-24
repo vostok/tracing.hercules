@@ -12,7 +12,7 @@ namespace Vostok.Tracing.Hercules
     /// Converts <see cref="ISpan"/>s to <see cref="HerculesEvent"/>.
     /// </summary>
     [PublicAPI]
-    internal class HerculesSpanBuilder
+    public class HerculesSpanBuilder
     {
         public static HerculesEvent Build([NotNull] ISpan span, [CanBeNull] IFormatProvider formatProvider = null)
         {
