@@ -1,3 +1,7 @@
+## 0.1.8 (24-12-2021):
+
+Extract `HerculesSpanBuilder`.
+
 ## 0.1.7 (06-12-2021):
 
 Added `net6.0` target.
