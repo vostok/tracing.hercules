@@ -1,4 +1,4 @@
-## 0.1.8 (24-12-2021):
+## 0.1.9 (24-12-2021):
 
 Extract `HerculesSpanBuilder`.
 
