@@ -23,7 +23,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.ClientName = value;
                     break;
                 case WellKnownAnnotations.Http.Client.Address:
-                    span.ClientAddress = IPAddress.TryParse(value, out var parsed) && parsed.IsIPv4MappedToIPv6 ? parsed.MapToIPv4() : null;
+                    span.ClientAddress = IPAddress.TryParse(value, out var parsed) ? parsed.IsIPv4MappedToIPv6 ? parsed.MapToIPv4() : parsed : null;
                     break;
                 default:
                     base.AddValue(key, value);
