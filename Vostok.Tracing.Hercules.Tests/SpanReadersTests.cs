@@ -139,12 +139,13 @@ namespace Vostok.Tracing.Hercules.Tests
             span.Size.Should().Be(10L);
         }
 
-        [Test]
-        public void Should_fill_http_server_annotations()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Should_fill_http_server_annotations(bool isIpv6)
         {
             var reader = new HerculesHttpServerSpanReader();
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
-            var ipAddress = IPAddress.Loopback;
+            var ipAddress = isIpv6 ? IPAddress.Loopback.MapToIPv6() : IPAddress.Loopback;
             var clientName = "zapad";
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -168,7 +169,7 @@ namespace Vostok.Tracing.Hercules.Tests
             span.Application.Should().Be("baz");
             span.RequestSize.Should().Be(10L);
             span.ResponseSize.Should().Be(20L);
-            span.ClientAddress.Should().Be(ipAddress);
+            span.ClientAddress.Should().Be(IPAddress.Loopback);
             span.ClientName.Should().Be(clientName);
         }
     }
