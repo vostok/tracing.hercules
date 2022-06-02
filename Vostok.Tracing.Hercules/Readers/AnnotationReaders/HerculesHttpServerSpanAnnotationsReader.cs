@@ -19,12 +19,6 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case WellKnownAnnotations.Http.Client.Name:
-                    span.ClientName = value;
-                    break;
-                case WellKnownAnnotations.Http.Client.Address:
-                    span.ClientAddress = IPAddress.TryParse(value, out var parsed) ? parsed : null;
-                    break;
                 default:
                     base.AddValue(key, value);
                     break;
