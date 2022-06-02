@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using JetBrains.Annotations;
 using Vostok.Clusterclient.Core.Model;
 
@@ -16,8 +17,12 @@ namespace Vostok.Tracing.Hercules.Models
         public ResponseCode ResponseCode { get; set; }
 
         public Uri RequestUrl { get; set; }
+        
+        public string ClientName { get; set; }
+        
+        public IPAddress ClientAddress { get; set; }
 
         public override string ToString() =>
-            $"{nameof(TraceId)}: {TraceId}, {nameof(BeginTimestamp)}: {BeginTimestamp}, {nameof(EndTimestamp)}: {EndTimestamp}, {nameof(Latency)}: {Latency}, {nameof(Application)}: {Application}, {nameof(Environment)}: {Environment}, {nameof(Host)}: {Host}, {nameof(RequestMethod)}: {RequestMethod}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(ResponseCode)}: {ResponseCode}, {nameof(RequestUrl)}: {RequestUrl}";
+            $"{base.ToString()}, {nameof(RequestMethod)}: {RequestMethod}, {nameof(RequestSize)}: {RequestSize}, {nameof(ResponseSize)}: {ResponseSize}, {nameof(ResponseCode)}: {ResponseCode}, {nameof(RequestUrl)}: {RequestUrl}, {nameof(ClientName)}: {ClientName}, {nameof(ClientAddress)}: {ClientAddress}";
     }
 }

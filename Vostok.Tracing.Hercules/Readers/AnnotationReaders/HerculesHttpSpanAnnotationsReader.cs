@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
@@ -18,8 +19,14 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
+                case WellKnownAnnotations.Http.Client.Name:
+                    span.ClientName = value;
+                    break;
+                case WellKnownAnnotations.Http.Client.Address:
+                    span.ClientAddress = IPAddress.TryParse(value, out var ip) ? ip : null;
+                    break;
                 case WellKnownAnnotations.Http.Request.Url:
-                    span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var parsed) ? null : parsed;
+                    span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var url) ? null : url;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
                     span.RequestMethod = value;
