@@ -1,0 +1,3 @@
+Vostok.Tracing.Hercules.Models.HerculesCommonSpan.FillAnnotations(System.Collections.Generic.Dictionary<string, object> annotations) -> void
+Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.HerculesHttpClientSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader reader) -> void
+*REMOVED*Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.HerculesHttpClientSpanReader() -> void

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
 using FluentAssertions;
+using NSubstitute;
 using NUnit.Framework;
+using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Helpers;
 using Vostok.Tracing.Hercules.Readers;
@@ -11,6 +13,8 @@ namespace Vostok.Tracing.Hercules.Tests
     [TestFixture]
     internal class SpanReadersTests
     {
+        private IBinaryBufferReader fakeReader = Substitute.For<IBinaryBufferReader>(); 
+        
         [Test]
         public void Should_fill_http_cluster_annotations()
         {
@@ -42,7 +46,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_http_client_annotations()
         {
-            var reader = new HerculesHttpClientSpanReader();
+            var reader = new HerculesHttpClientSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
