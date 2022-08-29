@@ -35,9 +35,9 @@ namespace Vostok.Tracing.Hercules.Models
 
         public string Component { get; set; }
 
-        public void FillAnnotations(Dictionary<string, object> annotations)
+        public void ReadSpecificAnnotations(Dictionary<string, object> annotations)
         {
-            var annotationsReader = new HerculesSomeSpanAnnotationsReader(annotations);
+            var annotationsReader = new HerculesSpecificAnnotationsReader(annotations);
 
             var convertedReader = new BinaryBufferReader(reader.Buffer, readerPosition)
             {

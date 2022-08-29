@@ -3,11 +3,11 @@ using Vostok.Hercules.Client.Abstractions.Events;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders;
 
-internal class HerculesSomeSpanAnnotationsReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
+internal class HerculesSpecificAnnotationsReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
 {
     private readonly Dictionary<string, object> annotations;
 
-    public HerculesSomeSpanAnnotationsReader(Dictionary<string, object> annotations)
+    public HerculesSpecificAnnotationsReader(Dictionary<string, object> annotations)
     {
         this.annotations = annotations;
     }
