@@ -36,6 +36,8 @@ namespace Vostok.Tracing.Hercules.Models
         {
             var annotationsReader = new HerculesSpecificAnnotationsReader(annotations);
 
+            using var _ = reader.JumpTo(readerPosition);
+            
             reader.ReadContainer(annotationsReader);
         }
 
