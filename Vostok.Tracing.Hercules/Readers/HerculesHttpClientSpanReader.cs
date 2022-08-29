@@ -10,11 +10,11 @@ namespace Vostok.Tracing.Hercules.Readers
     [PublicAPI]
     public class HerculesHttpClientSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesHttpClientSpan>
     {
-        private readonly IBinaryBufferReader reader;
+        private readonly IBinaryEventsReader reader;
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesHttpClientSpan span;
 
-        public HerculesHttpClientSpanReader(IBinaryBufferReader reader)
+        public HerculesHttpClientSpanReader(IBinaryEventsReader reader)
             : this(new HerculesHttpClientSpan())
         {
             this.reader = reader;
