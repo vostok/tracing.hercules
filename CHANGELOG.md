@@ -1,3 +1,7 @@
+## 0.1.10 (28-09-2022):
+
+Changed internal span readers interfaces.
+
 ## 0.1.9 (24-12-2021):
 
 Extract `HerculesSpanBuilder`.
