@@ -10,12 +10,14 @@ namespace Vostok.Tracing.Hercules.Readers
     [PublicAPI]
     public class HerculesCustomClusterSpanReader : HerculesCommonSpanReader, IHerculesEventBuilder<HerculesCustomClusterSpan>
     {
+        private readonly IBinaryEventsReader reader;
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
         private readonly HerculesCustomClusterSpan span;
 
-        public HerculesCustomClusterSpanReader()
+        public HerculesCustomClusterSpanReader(IBinaryEventsReader reader)
             : this(new HerculesCustomClusterSpan())
         {
+            this.reader = reader;
         }
 
         private HerculesCustomClusterSpanReader(HerculesCustomClusterSpan span)
@@ -28,10 +30,13 @@ namespace Vostok.Tracing.Hercules.Readers
 
         public new IHerculesTagsBuilder AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
         {
-            valueBuilder(
-                key == TagNames.Annotations
-                    ? new HerculesCustomClusterSpanAnnotationsReader(span)
-                    : DummyBuilder);
+            if (key == TagNames.Annotations)
+            {
+                span.Reader = reader;
+                valueBuilder(new HerculesCustomClusterSpanAnnotationsReader(span));
+            }
+            else
+                valueBuilder(DummyBuilder);
 
             return this;
         }

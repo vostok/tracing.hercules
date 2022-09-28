@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
 using FluentAssertions;
+using NSubstitute;
 using NUnit.Framework;
+using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Helpers;
 using Vostok.Tracing.Hercules.Readers;
@@ -11,10 +13,12 @@ namespace Vostok.Tracing.Hercules.Tests
     [TestFixture]
     internal class SpanReadersTests
     {
+        private readonly IBinaryEventsReader fakeReader = Substitute.For<IBinaryEventsReader>(); 
+        
         [Test]
         public void Should_fill_http_cluster_annotations()
         {
-            var reader = new HerculesHttpClusterSpanReader();
+            var reader = new HerculesHttpClusterSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -42,7 +46,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_http_client_annotations()
         {
-            var reader = new HerculesHttpClientSpanReader();
+            var reader = new HerculesHttpClientSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -68,7 +72,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_custom_client_annotations()
         {
-            var reader = new HerculesCustomClientSpanReader();
+            var reader = new HerculesCustomClientSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -94,7 +98,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_custom_cluster_annotations()
         {
-            var reader = new HerculesCustomClusterSpanReader();
+            var reader = new HerculesCustomClusterSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -118,7 +122,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_custom_operation_annotations()
         {
-            var reader = new HerculesCustomOperationSpanReader();
+            var reader = new HerculesCustomOperationSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
 
             reader.AddValue(TagNames.TraceId, traceId);
@@ -142,7 +146,7 @@ namespace Vostok.Tracing.Hercules.Tests
         [Test]
         public void Should_fill_http_server_annotations()
         {
-            var reader = new HerculesHttpServerSpanReader();
+            var reader = new HerculesHttpServerSpanReader(fakeReader);
             var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
             var ipAddress = IPAddress.Loopback;
             var clientName = "zapad";
