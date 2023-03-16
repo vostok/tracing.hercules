@@ -1,4 +1,6 @@
 ﻿#nullable enable
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
@@ -46,11 +48,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     break;
 
                 case WellKnownAnnotations.Http.Request.Url:
-                case OpenTelemetrySemanticConventions.HttpUrl:
+                case TraceSemanticConventions.AttributeHttpUrl:
                     Url = value;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
-                case OpenTelemetrySemanticConventions.HttpMethod:
+                case TraceSemanticConventions.AttributeHttpMethod:
                     Method = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.Replica:
@@ -64,11 +66,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     WellKnownStatus = value;
                     break;
                 case WellKnownAnnotations.Common.Application:
-                case OpenTelemetrySemanticConventions.ServiceName:
+                case ResourceSemanticConventions.AttributeServiceName:
                     SourceApplication = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
-                case OpenTelemetrySemanticConventions.DeploymentEnvironment:
+                case ResourceSemanticConventions.AttributeDeploymentEnvironment:
                     SourceEnvironment = value;
                     break;
             }
@@ -78,7 +80,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 
         public new IHerculesTagsBuilder AddValue(string key, int value)
         {
-            if (key is WellKnownAnnotations.Http.Response.Code or OpenTelemetrySemanticConventions.HttpStatusCode)
+            if (key is WellKnownAnnotations.Http.Response.Code or TraceSemanticConventions.AttributeHttpStatusCode)
                 Code = (ResponseCode)value;
 
             return this;
