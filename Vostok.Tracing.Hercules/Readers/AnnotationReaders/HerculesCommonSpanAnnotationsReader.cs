@@ -16,12 +16,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Common.Application:
+                case OpenTelemetrySemanticConventions.ServiceName:
                     span.Application = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
+                case OpenTelemetrySemanticConventions.DeploymentEnvironment:
                     span.Environment = value;
                     break;
                 case WellKnownAnnotations.Common.Host:
+                case OpenTelemetrySemanticConventions.HostName:
                     span.Host = value;
                     break;
                 case WellKnownAnnotations.Common.Operation:
