@@ -23,12 +23,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.ClientName = value;
                     break;
                 case WellKnownAnnotations.Http.Client.Address:
+                case OpenTelemetrySemanticConventions.HttpClientIp:
                     span.ClientAddress = IPAddress.TryParse(value, out var ip) ? ip : null;
                     break;
                 case WellKnownAnnotations.Http.Request.Url:
+                case OpenTelemetrySemanticConventions.HttpUrl:
                     span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var url) ? null : url;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
+                case OpenTelemetrySemanticConventions.HttpMethod:
                     span.RequestMethod = value;
                     break;
                 default:
@@ -44,9 +47,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Request.Size:
+                case OpenTelemetrySemanticConventions.HttpRequestContentLength:
                     span.RequestSize = value;
                     break;
                 case WellKnownAnnotations.Http.Response.Size:
+                case OpenTelemetrySemanticConventions.HttpResponseContentLength:
                     span.ResponseSize = value;
                     break;
                 default:
@@ -62,6 +67,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Response.Code:
+                case OpenTelemetrySemanticConventions.HttpStatusCode:
                     span.ResponseCode = (ResponseCode)value;
                     break;
                 default:
