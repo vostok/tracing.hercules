@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Net;
+using System.Security.Policy;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Helpers;
@@ -174,6 +177,44 @@ namespace Vostok.Tracing.Hercules.Tests
             span.ResponseSize.Should().Be(20L);
             span.ClientAddress.Should().Be(ipAddress);
             span.ClientName.Should().Be(clientName);
+        }
+        
+        [Test]
+        public void Should_fill_http_server_annotations_with_OpenTelemetryStyle()
+        {
+            var reader = new HerculesHttpServerSpanReader(fakeReader);
+            var traceId = Guid.Parse("1DE90442-FC2D-4F43-829E-B0CC1A75C426");
+            var ipAddress = IPAddress.Loopback;
+            var clientName = "zapad";
+
+            reader.AddValue(TagNames.TraceId, traceId);
+            reader.AddContainer(
+                TagNames.Annotations,
+                builder => builder
+                    .AddValue(ResourceSemanticConventions.AttributeDeploymentEnvironment, "foo")
+                    .AddValue(TraceSemanticConventions.AttributeHttpStatusCode, 200)
+                    .AddValue(ResourceSemanticConventions.AttributeServiceName, "baz")
+                    .AddValue(TraceSemanticConventions.AttributeHttpRequestContentLength, 10L)
+                    .AddValue(TraceSemanticConventions.AttributeHttpResponseContentLength, 20L)
+                    .AddValue(TraceSemanticConventions.AttributeHttpClientIp, ipAddress.ToString())
+                    .AddValue(WellKnownAnnotations.Http.Client.Name, clientName)
+                    .AddValue(TraceSemanticConventions.AttributeHttpTarget, "/webshop/articles/4?s=1")
+                    .AddValue(TraceSemanticConventions.AttributeNetHostName, "example.com")
+                    .AddValue(TraceSemanticConventions.AttributeHttpScheme, "https")
+                    .AddValue(TraceSemanticConventions.AttributeNetHostPort, 8080)
+            );
+
+            var span = reader.BuildEvent();
+
+            span.Environment.Should().Be("foo");
+            span.TraceId.Should().Be(traceId);
+            span.ResponseCode.Should().Be(200);
+            span.Application.Should().Be("baz");
+            span.RequestSize.Should().Be(10L);
+            span.ResponseSize.Should().Be(20L);
+            span.ClientAddress.Should().Be(ipAddress);
+            span.ClientName.Should().Be(clientName);
+            span.RequestUrl.Should().Be(new Uri("https://example.com:8080/webshop/articles/4?s=1"));
         }
     }
 }

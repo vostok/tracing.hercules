@@ -33,7 +33,9 @@ namespace Vostok.Tracing.Hercules.Readers
             if (key == TagNames.Annotations)
             {
                 span.Reader = reader;
-                valueBuilder(new HerculesHttpServerSpanAnnotationsReader(span));
+                var annotationsReader = new HerculesHttpServerSpanAnnotationsReader(span);
+                valueBuilder(annotationsReader);
+                annotationsReader.FillUrl();
             }
             else
                 valueBuilder(DummyBuilder);
