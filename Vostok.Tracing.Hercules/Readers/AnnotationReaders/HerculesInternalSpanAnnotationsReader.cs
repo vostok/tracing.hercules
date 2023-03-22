@@ -78,6 +78,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             return this;
         }
 
+        // note (kungurtsev, 22.03.2023): grpc protocol has no int values:
+        public new IHerculesTagsBuilder AddValue(string key, long value)
+        {
+            if (key is WellKnownAnnotations.Http.Response.Code or TraceSemanticConventions.AttributeHttpStatusCode)
+                Code = (ResponseCode)value;
+
+            return this;
+        }
+        
         public new IHerculesTagsBuilder AddValue(string key, int value)
         {
             if (key is WellKnownAnnotations.Http.Response.Code or TraceSemanticConventions.AttributeHttpStatusCode)
