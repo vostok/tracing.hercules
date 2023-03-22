@@ -1,4 +1,5 @@
 using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Models;
@@ -29,6 +30,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.Host = value;
                     break;
                 case WellKnownAnnotations.Common.Operation:
+                case "name":
                     span.Operation = value;
                     break;
                 case WellKnownAnnotations.Common.Status:
