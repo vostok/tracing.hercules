@@ -4,6 +4,7 @@ using OpenTelemetry.Trace;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Hercules.Helpers;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
@@ -11,6 +12,10 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
     {
         public string? Kind;
         public string? Url;
+        public string? UrlPath;
+        public string? UrlHost;
+        public string? UrlScheme;
+        public int? UrlPort;
         public string? Replica;
         public string? Method;
         public string? TargetEnvironment;
@@ -22,6 +27,12 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         public string? SourceEnvironment;
         public ResponseCode? Code;
 
+        public void FillUrl()
+        {
+            if (Url == null && UrlPath != null)
+                Url = UrlHelper.FromPieces(UrlScheme, UrlHost, UrlPort, UrlPath).ToString();
+        }
+        
         public new IHerculesTagsBuilder AddValue(string key, string value)
         {
             switch (key)
@@ -58,7 +69,16 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case WellKnownAnnotations.Custom.Request.Replica:
                     Replica = value;
                     break;
-                
+                case TraceSemanticConventions.AttributeHttpTarget:
+                    UrlPath = value;
+                    break;
+                case TraceSemanticConventions.AttributeNetHostName:
+                    UrlHost = value;
+                    break;
+                case TraceSemanticConventions.AttributeHttpScheme:
+                    UrlScheme = value;
+                    break;
+
                 case WellKnownAnnotations.Common.Operation:
                     Operation = value;
                     break;
@@ -81,16 +101,32 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         // note (kungurtsev, 22.03.2023): grpc protocol has no int values:
         public new IHerculesTagsBuilder AddValue(string key, long value)
         {
-            if (key is WellKnownAnnotations.Http.Response.Code or TraceSemanticConventions.AttributeHttpStatusCode)
-                Code = (ResponseCode)value;
+            switch (key)
+            {
+                case WellKnownAnnotations.Http.Response.Code:
+                case TraceSemanticConventions.AttributeHttpStatusCode:
+                    Code = (ResponseCode)value;
+                    break;
+                case TraceSemanticConventions.AttributeNetHostPort:
+                    UrlPort = (int)value;
+                    break;
+            }
 
             return this;
         }
         
         public new IHerculesTagsBuilder AddValue(string key, int value)
         {
-            if (key is WellKnownAnnotations.Http.Response.Code or TraceSemanticConventions.AttributeHttpStatusCode)
-                Code = (ResponseCode)value;
+            switch (key)
+            {
+                case WellKnownAnnotations.Http.Response.Code:
+                case TraceSemanticConventions.AttributeHttpStatusCode:
+                    Code = (ResponseCode)value;
+                    break;
+                case TraceSemanticConventions.AttributeNetHostPort:
+                    UrlPort = value;
+                    break;
+            }
 
             return this;
         }

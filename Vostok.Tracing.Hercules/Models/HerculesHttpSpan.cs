@@ -17,9 +17,9 @@ namespace Vostok.Tracing.Hercules.Models
         public ResponseCode ResponseCode { get; set; }
 
         public Uri RequestUrl { get; set; }
-        
+
         public string ClientName { get; set; }
-        
+
         public IPAddress ClientAddress { get; set; }
 
         public override string ToString() =>
