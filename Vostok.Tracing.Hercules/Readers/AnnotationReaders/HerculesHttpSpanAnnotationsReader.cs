@@ -55,6 +55,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case TraceSemanticConventions.AttributeHttpResponseContentLength:
                     span.ResponseSize = value;
                     break;
+                // note (kungurtsev, 22.03.2023): grpc protocol has no int values:
+                case WellKnownAnnotations.Http.Response.Code:
+                case TraceSemanticConventions.AttributeHttpStatusCode:
+                    span.ResponseCode = (ResponseCode)value;
+                    break;
                 default:
                     base.AddValue(key, value);
                     break;
