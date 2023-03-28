@@ -1,3 +1,7 @@
+## 0.1.11 (28-03-2023):
+
+Read OpenTelemetry tags.
+
 ## 0.1.10 (28-09-2022):
 
 Changed internal span readers interfaces.
