@@ -1,4 +1,4 @@
-override Vostok.Tracing.Hercules.Models.HerculesCommonSpan.ToString() -> string
+﻿override Vostok.Tracing.Hercules.Models.HerculesCommonSpan.ToString() -> string
 override Vostok.Tracing.Hercules.Models.HerculesCustomClientSpan.ToString() -> string
 override Vostok.Tracing.Hercules.Models.HerculesCustomClusterSpan.ToString() -> string
 override Vostok.Tracing.Hercules.Models.HerculesCustomOperationSpan.ToString() -> string
@@ -48,6 +48,7 @@ Vostok.Tracing.Hercules.Models.HerculesCommonSpan.Host.set -> void
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.Latency.get -> System.TimeSpan
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.Operation.get -> string
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.Operation.set -> void
+Vostok.Tracing.Hercules.Models.HerculesCommonSpan.ReadSpecificAnnotations(System.Collections.Generic.Dictionary<string, object> annotations) -> void
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.TraceId.get -> System.Guid
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.TraceId.set -> void
 Vostok.Tracing.Hercules.Models.HerculesCommonSpan.WellKnownStatus.get -> string
@@ -119,31 +120,31 @@ Vostok.Tracing.Hercules.Readers.HerculesCommonSpanReader.SetTimestamp(System.Dat
 Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesCustomClientSpan
-Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader.HerculesCustomClientSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader.HerculesCustomClientSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesCustomClientSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesCustomClientSpan>
 Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesCustomClusterSpan
-Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader.HerculesCustomClusterSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader.HerculesCustomClusterSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesCustomClusterSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesCustomClusterSpan>
 Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesCustomOperationSpan
-Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader.HerculesCustomOperationSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader.HerculesCustomOperationSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesCustomOperationSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesCustomOperationSpan>
 Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesHttpClientSpan
-Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.HerculesHttpClientSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.HerculesHttpClientSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesHttpClientSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesHttpClientSpan>
 Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesHttpClusterSpan
-Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader.HerculesHttpClusterSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader.HerculesHttpClusterSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesHttpClusterSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesHttpClusterSpan>
 Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader
 Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
 Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.BuildEvent() -> Vostok.Tracing.Hercules.Models.HerculesHttpServerSpan
-Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.HerculesHttpServerSpanReader() -> void
+Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.HerculesHttpServerSpanReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryEventsReader reader) -> void
 Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.HerculesHttpServerSpanReader(Vostok.Tracing.Hercules.Models.HerculesHttpServerSpan span) -> void
 Vostok.Tracing.Hercules.Readers.HerculesHttpServerSpanReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Tracing.Hercules.Models.HerculesHttpServerSpan>
