@@ -29,7 +29,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 
         public void FillUrl()
         {
-            if (Url == null && UrlPath != null)
+            if (Url == null && UrlHost != null && UrlPath != null)
                 Url = UrlHelper.FromPieces(UrlScheme, UrlHost, UrlPort, UrlPath).ToString();
         }
         
