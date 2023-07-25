@@ -18,15 +18,22 @@ internal class HerculesSpecificAnnotationsReader : DummyHerculesTagsBuilder, IHe
             annotations[key] = value;
         return this;
     }
-    
+
     public new IHerculesTagsBuilder AddValue(string key, string value)
     {
         if (annotations.ContainsKey(key))
             annotations[key] = value;
         return this;
     }
-    
+
     public new IHerculesTagsBuilder AddValue(string key, long value)
+    {
+        if (annotations.ContainsKey(key))
+            annotations[key] = value;
+        return this;
+    }
+
+    public new IHerculesTagsBuilder AddValue(string key, double value)
     {
         if (annotations.ContainsKey(key))
             annotations[key] = value;
