@@ -39,7 +39,4 @@
       <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="OpenTelemetry.SemanticConventions" Version="1.0.0-rc9.9" />
-  </ItemGroup>
 </Project>
