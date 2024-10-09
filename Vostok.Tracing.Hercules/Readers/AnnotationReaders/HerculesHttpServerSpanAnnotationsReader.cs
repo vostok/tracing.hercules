@@ -26,12 +26,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case SemanticConventions.AttributeHttpTargetLegacy:
+                case SemanticConventions.AttributeUrlPath:
                     span.RequestUrlPath = value;
                     break;
                 case SemanticConventions.AttributeNetHostNameLegacy:
+                case SemanticConventions.AttributeServerAddress:
                     span.RequestUrlHost = value;
                     break;
                 case SemanticConventions.AttributeHttpSchemeLegacy:
+                case SemanticConventions.AttributeUrlScheme:
                     span.RequestUrlScheme = value;
                     break;
                 
@@ -48,6 +51,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case SemanticConventions.AttributeNetHostPortLegacy:
+                case SemanticConventions.AttributeServerPort:
                     span.RequestUrlPort = (int)value;
                     break;
                 default:
@@ -63,6 +67,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case SemanticConventions.AttributeNetHostPortLegacy:
+                case SemanticConventions.AttributeServerPort:
                     span.RequestUrlPort = value;
                     break;
                 default:

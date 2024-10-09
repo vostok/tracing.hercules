@@ -20,4 +20,13 @@ internal static class SemanticConventions
     public const string AttributeServiceName = "service.name";
     public const string AttributeDeploymentEnvironment = "deployment.environment";
     public const string AttributeHostName = "host.name";
+    public const string AttributeHttpUrlFull = "url.full";
+    public const string AttributeUrlPath = "url.path";
+    public const string AttributeServerAddress = "server.address";
+    public const string AttributeServerPort = "server.port";
+    public const string AttributeUrlScheme = "url.scheme";
+    public const string AttributeHttpResponseStatusCode = "http.response.status_code";
+    public const string AttributeHttpRequestContentLength = "http.request.header.content-length";
+    public const string AttributeHttpResponseContentLength = "http.response.header.content-length";
+    public const string AttributeClientAddress = "client.address";
 }

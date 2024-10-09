@@ -25,10 +25,12 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     break;
                 case WellKnownAnnotations.Http.Client.Address:
                 case SemanticConventions.AttributeHttpClientIpLegacy:
+                case SemanticConventions.AttributeClientAddress:
                     span.ClientAddress = IPAddress.TryParse(value, out var ip) ? ip : null;
                     break;
                 case WellKnownAnnotations.Http.Request.Url:
                 case SemanticConventions.AttributeHttpUrlLegacy:
+                case SemanticConventions.AttributeHttpUrlFull:
                     span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var url) ? null : url;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
@@ -49,15 +51,18 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             {
                 case WellKnownAnnotations.Http.Request.Size:
                 case SemanticConventions.AttributeHttpRequestContentLengthLegacy:
+                case SemanticConventions.AttributeHttpRequestContentLength:
                     span.RequestSize = value;
                     break;
                 case WellKnownAnnotations.Http.Response.Size:
                 case SemanticConventions.AttributeHttpResponseContentLengthLegacy:
+                case SemanticConventions.AttributeHttpResponseContentLength:
                     span.ResponseSize = value;
                     break;
                 // note (kungurtsev, 22.03.2023): grpc protocol has no int values:
                 case WellKnownAnnotations.Http.Response.Code:
                 case SemanticConventions.AttributeHttpStatusCodeLegacy:
+                case SemanticConventions.AttributeHttpResponseStatusCode:
                     span.ResponseCode = (ResponseCode)value;
                     break;
                 default:
@@ -74,6 +79,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             {
                 case WellKnownAnnotations.Http.Response.Code:
                 case SemanticConventions.AttributeHttpStatusCodeLegacy:
+                case SemanticConventions.AttributeHttpResponseStatusCode:
                     span.ResponseCode = (ResponseCode)value;
                     break;
                 default:
