@@ -1,3 +1,7 @@
+## 0.1.12 (09-10-2024):
+
+Read current OpenTelemetry semantic convention tags. 
+
 ## 0.1.11 (28-03-2023):
 
 Read OpenTelemetry tags.
