@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Net;
-using System.Security.Policy;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Helpers;
+using Vostok.Tracing.Hercules.OpenTelemetry;
 using Vostok.Tracing.Hercules.Readers;
 
 namespace Vostok.Tracing.Hercules.Tests
@@ -191,17 +189,17 @@ namespace Vostok.Tracing.Hercules.Tests
             reader.AddContainer(
                 TagNames.Annotations,
                 builder => builder
-                    .AddValue(ResourceSemanticConventions.AttributeDeploymentEnvironment, "foo")
-                    .AddValue(TraceSemanticConventions.AttributeHttpStatusCode, 200)
-                    .AddValue(ResourceSemanticConventions.AttributeServiceName, "baz")
-                    .AddValue(TraceSemanticConventions.AttributeHttpRequestContentLength, 10L)
-                    .AddValue(TraceSemanticConventions.AttributeHttpResponseContentLength, 20L)
-                    .AddValue(TraceSemanticConventions.AttributeHttpClientIp, ipAddress.ToString())
+                    .AddValue(SemanticConventions.AttributeDeploymentEnvironment, "foo")
+                    .AddValue(SemanticConventions.AttributeHttpStatusCodeLegacy, 200)
+                    .AddValue(SemanticConventions.AttributeServiceName, "baz")
+                    .AddValue(SemanticConventions.AttributeHttpRequestContentLengthLegacy, 10L)
+                    .AddValue(SemanticConventions.AttributeHttpResponseContentLengthLegacy, 20L)
+                    .AddValue(SemanticConventions.AttributeHttpClientIpLegacy, ipAddress.ToString())
                     .AddValue(WellKnownAnnotations.Http.Client.Name, clientName)
-                    .AddValue(TraceSemanticConventions.AttributeHttpTarget, "/webshop/articles/4?s=1")
-                    .AddValue(TraceSemanticConventions.AttributeNetHostName, "example.com")
-                    .AddValue(TraceSemanticConventions.AttributeHttpScheme, "https")
-                    .AddValue(TraceSemanticConventions.AttributeNetHostPort, 8080)
+                    .AddValue(SemanticConventions.AttributeHttpTargetLegacy, "/webshop/articles/4?s=1")
+                    .AddValue(SemanticConventions.AttributeNetHostNameLegacy, "example.com")
+                    .AddValue(SemanticConventions.AttributeHttpSchemeLegacy, "https")
+                    .AddValue(SemanticConventions.AttributeNetHostPortLegacy, 8080)
             );
 
             var span = reader.BuildEvent();

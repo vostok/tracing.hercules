@@ -1,7 +1,7 @@
-﻿using OpenTelemetry.Trace;
-using Vostok.Hercules.Client.Abstractions.Events;
+﻿using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Hercules.Helpers;
 using Vostok.Tracing.Hercules.Models;
+using Vostok.Tracing.Hercules.OpenTelemetry;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
@@ -25,13 +25,13 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case TraceSemanticConventions.AttributeHttpTarget:
+                case SemanticConventions.AttributeHttpTargetLegacy:
                     span.RequestUrlPath = value;
                     break;
-                case TraceSemanticConventions.AttributeNetHostName:
+                case SemanticConventions.AttributeNetHostNameLegacy:
                     span.RequestUrlHost = value;
                     break;
-                case TraceSemanticConventions.AttributeHttpScheme:
+                case SemanticConventions.AttributeHttpSchemeLegacy:
                     span.RequestUrlScheme = value;
                     break;
                 
@@ -47,7 +47,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case TraceSemanticConventions.AttributeNetHostPort:
+                case SemanticConventions.AttributeNetHostPortLegacy:
                     span.RequestUrlPort = (int)value;
                     break;
                 default:
@@ -62,7 +62,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
         {
             switch (key)
             {
-                case TraceSemanticConventions.AttributeNetHostPort:
+                case SemanticConventions.AttributeNetHostPortLegacy:
                     span.RequestUrlPort = value;
                     break;
                 default:

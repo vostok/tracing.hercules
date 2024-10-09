@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
-using OpenTelemetry.Trace;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Models;
+using Vostok.Tracing.Hercules.OpenTelemetry;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
@@ -24,15 +24,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.ClientName = value;
                     break;
                 case WellKnownAnnotations.Http.Client.Address:
-                case TraceSemanticConventions.AttributeHttpClientIp:
+                case SemanticConventions.AttributeHttpClientIpLegacy:
                     span.ClientAddress = IPAddress.TryParse(value, out var ip) ? ip : null;
                     break;
                 case WellKnownAnnotations.Http.Request.Url:
-                case TraceSemanticConventions.AttributeHttpUrl:
+                case SemanticConventions.AttributeHttpUrlLegacy:
                     span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var url) ? null : url;
                     break;
                 case WellKnownAnnotations.Http.Request.Method:
-                case TraceSemanticConventions.AttributeHttpMethod:
+                case SemanticConventions.AttributeHttpMethodLegacy:
                     span.RequestMethod = value;
                     break;
                 default:
@@ -48,16 +48,16 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Request.Size:
-                case TraceSemanticConventions.AttributeHttpRequestContentLength:
+                case SemanticConventions.AttributeHttpRequestContentLengthLegacy:
                     span.RequestSize = value;
                     break;
                 case WellKnownAnnotations.Http.Response.Size:
-                case TraceSemanticConventions.AttributeHttpResponseContentLength:
+                case SemanticConventions.AttributeHttpResponseContentLengthLegacy:
                     span.ResponseSize = value;
                     break;
                 // note (kungurtsev, 22.03.2023): grpc protocol has no int values:
                 case WellKnownAnnotations.Http.Response.Code:
-                case TraceSemanticConventions.AttributeHttpStatusCode:
+                case SemanticConventions.AttributeHttpStatusCodeLegacy:
                     span.ResponseCode = (ResponseCode)value;
                     break;
                 default:
@@ -73,7 +73,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Response.Code:
-                case TraceSemanticConventions.AttributeHttpStatusCode:
+                case SemanticConventions.AttributeHttpStatusCodeLegacy:
                     span.ResponseCode = (ResponseCode)value;
                     break;
                 default:
