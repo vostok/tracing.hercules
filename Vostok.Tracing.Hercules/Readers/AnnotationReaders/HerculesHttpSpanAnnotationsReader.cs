@@ -33,8 +33,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case SemanticConventions.AttributeHttpUrlFull:
                     span.RequestUrl = !Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out var url) ? null : url;
                     break;
-                case WellKnownAnnotations.Http.Request.Method:
+                // case WellKnownAnnotations.Http.Request.Method: same as OTel attribute
                 case SemanticConventions.AttributeHttpMethodLegacy:
+                case SemanticConventions.AttributeHttpRequestMethod:
                     span.RequestMethod = value;
                     break;
                 default:

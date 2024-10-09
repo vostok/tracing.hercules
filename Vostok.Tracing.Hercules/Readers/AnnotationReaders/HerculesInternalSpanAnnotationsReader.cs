@@ -62,8 +62,9 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case SemanticConventions.AttributeHttpUrlFull:
                     Url = value;
                     break;
-                case WellKnownAnnotations.Http.Request.Method:
+                // case WellKnownAnnotations.Http.Request.Method: same as OTel attribute
                 case SemanticConventions.AttributeHttpMethodLegacy:
+                case SemanticConventions.AttributeHttpRequestMethod:
                     Method = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.Replica:

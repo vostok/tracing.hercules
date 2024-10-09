@@ -25,6 +25,7 @@ internal static class SemanticConventions
     public const string AttributeServerAddress = "server.address";
     public const string AttributeServerPort = "server.port";
     public const string AttributeUrlScheme = "url.scheme";
+    public const string AttributeHttpRequestMethod = "http.request.method";
     public const string AttributeHttpResponseStatusCode = "http.response.status_code";
     public const string AttributeHttpRequestContentLength = "http.request.header.content-length";
     public const string AttributeHttpResponseContentLength = "http.response.header.content-length";
