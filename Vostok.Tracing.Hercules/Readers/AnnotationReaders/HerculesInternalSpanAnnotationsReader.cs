@@ -1,10 +1,9 @@
 ﻿#nullable enable
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Helpers;
+using Vostok.Tracing.Hercules.OpenTelemetry;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
@@ -59,23 +58,28 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     break;
 
                 case WellKnownAnnotations.Http.Request.Url:
-                case TraceSemanticConventions.AttributeHttpUrl:
+                case SemanticConventions.AttributeHttpUrlLegacy:
+                case SemanticConventions.AttributeHttpUrlFull:
                     Url = value;
                     break;
-                case WellKnownAnnotations.Http.Request.Method:
-                case TraceSemanticConventions.AttributeHttpMethod:
+                // case WellKnownAnnotations.Http.Request.Method: same as OTel attribute
+                case SemanticConventions.AttributeHttpMethodLegacy:
+                case SemanticConventions.AttributeHttpRequestMethod:
                     Method = value;
                     break;
                 case WellKnownAnnotations.Custom.Request.Replica:
                     Replica = value;
                     break;
-                case TraceSemanticConventions.AttributeHttpTarget:
+                case SemanticConventions.AttributeHttpTargetLegacy:
+                case SemanticConventions.AttributeUrlPath:
                     UrlPath = value;
                     break;
-                case TraceSemanticConventions.AttributeNetHostName:
+                case SemanticConventions.AttributeNetHostNameLegacy:
+                case SemanticConventions.AttributeServerAddress:
                     UrlHost = value;
                     break;
-                case TraceSemanticConventions.AttributeHttpScheme:
+                case SemanticConventions.AttributeHttpSchemeLegacy:
+                case SemanticConventions.AttributeUrlScheme:
                     UrlScheme = value;
                     break;
 
@@ -86,11 +90,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     WellKnownStatus = value;
                     break;
                 case WellKnownAnnotations.Common.Application:
-                case ResourceSemanticConventions.AttributeServiceName:
+                case SemanticConventions.AttributeServiceName:
                     SourceApplication = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
-                case ResourceSemanticConventions.AttributeDeploymentEnvironment:
+                case SemanticConventions.AttributeDeploymentEnvironment:
                     SourceEnvironment = value;
                     break;
             }
@@ -104,10 +108,12 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Response.Code:
-                case TraceSemanticConventions.AttributeHttpStatusCode:
+                case SemanticConventions.AttributeHttpStatusCodeLegacy:
+                case SemanticConventions.AttributeHttpResponseStatusCode:
                     Code = (ResponseCode)value;
                     break;
-                case TraceSemanticConventions.AttributeNetHostPort:
+                case SemanticConventions.AttributeNetHostPortLegacy:
+                case SemanticConventions.AttributeServerPort:
                     UrlPort = (int)value;
                     break;
             }
@@ -120,10 +126,12 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Http.Response.Code:
-                case TraceSemanticConventions.AttributeHttpStatusCode:
+                case SemanticConventions.AttributeHttpStatusCodeLegacy:
+                case SemanticConventions.AttributeHttpResponseStatusCode:
                     Code = (ResponseCode)value;
                     break;
-                case TraceSemanticConventions.AttributeNetHostPort:
+                case SemanticConventions.AttributeNetHostPortLegacy:
+                case SemanticConventions.AttributeServerPort:
                     UrlPort = value;
                     break;
             }

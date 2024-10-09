@@ -1,8 +1,7 @@
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Hercules.Models;
+using Vostok.Tracing.Hercules.OpenTelemetry;
 
 namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
 {
@@ -18,15 +17,15 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
             switch (key)
             {
                 case WellKnownAnnotations.Common.Application:
-                case ResourceSemanticConventions.AttributeServiceName:
+                case SemanticConventions.AttributeServiceName:
                     span.Application = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
-                case ResourceSemanticConventions.AttributeDeploymentEnvironment:
+                case SemanticConventions.AttributeDeploymentEnvironment:
                     span.Environment = value;
                     break;
                 case WellKnownAnnotations.Common.Host:
-                case ResourceSemanticConventions.AttributeHostName:
+                case SemanticConventions.AttributeHostName:
                     span.Host = value;
                     break;
                 case WellKnownAnnotations.Common.Operation:
