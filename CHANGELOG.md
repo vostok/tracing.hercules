@@ -1,3 +1,7 @@
+## 0.1.12 (16-12-2024): 
+
+Bump NuGet deps versions
+
 ## 0.1.12 (09-10-2024):
 
 Read current OpenTelemetry semantic convention tags. 
