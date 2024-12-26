@@ -16,19 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Vostok.ClusterClient.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Hercules.Client.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Hercules.Client.Abstractions.dll</HintPath>
-    </Reference>
-    
-    <Reference Include="Vostok.Tracing.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.tracing.abstractions\Vostok.Tracing.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Tracing.Abstractions.dll</HintPath>
-    </Reference>
+    <ModuleReference Include="vostok.clusterclient.core" />
+    <ModuleReference Include="vostok.hercules.client.abstractions" />
+    <ModuleReference Include="vostok.tracing.abstractions" />
   </ItemGroup>
 
 </Project>
