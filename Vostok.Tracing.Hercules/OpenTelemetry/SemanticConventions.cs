@@ -18,7 +18,8 @@ internal static class SemanticConventions
 
     // New
     public const string AttributeServiceName = "service.name";
-    public const string AttributeDeploymentEnvironment = "deployment.environment";
+    public const string AttributeDeploymentEnvironment = "deployment.environment"; // todo (ponomaryovigor): Deprecated. Delete after clients migration.
+    public const string AttributeDeploymentEnvironmentName = "deployment.environment.name";
     public const string AttributeHostName = "host.name";
     public const string AttributeHttpUrlFull = "url.full";
     public const string AttributeUrlPath = "url.path";

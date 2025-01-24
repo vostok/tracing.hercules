@@ -190,7 +190,7 @@ namespace Vostok.Tracing.Hercules.Tests
                 TagNames.Annotations,
                 builder => builder
                     .AddValue(SemanticConventions.AttributeHostName, "host_name")
-                    .AddValue(SemanticConventions.AttributeDeploymentEnvironment, "foo")
+                    .AddValue(SemanticConventions.AttributeDeploymentEnvironmentName, "foo")
                     .AddValue(SemanticConventions.AttributeHttpStatusCodeLegacy, 200)
                     .AddValue(SemanticConventions.AttributeServiceName, "baz")
                     .AddValue(SemanticConventions.AttributeHttpRequestContentLengthLegacy, 10L)
@@ -229,7 +229,7 @@ namespace Vostok.Tracing.Hercules.Tests
                 TagNames.Annotations,
                 builder => builder
                     .AddValue(SemanticConventions.AttributeHostName, "host_name")
-                    .AddValue(SemanticConventions.AttributeDeploymentEnvironment, "foo")
+                    .AddValue(SemanticConventions.AttributeDeploymentEnvironmentName, "foo")
                     .AddValue(SemanticConventions.AttributeHttpResponseStatusCode, 200)
                     .AddValue(SemanticConventions.AttributeServiceName, "baz")
                     .AddValue(SemanticConventions.AttributeHttpRequestContentLength, 10L)

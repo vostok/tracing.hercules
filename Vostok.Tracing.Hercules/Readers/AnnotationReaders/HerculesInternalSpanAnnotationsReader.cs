@@ -94,6 +94,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     SourceApplication = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
+                case SemanticConventions.AttributeDeploymentEnvironmentName:
                 case SemanticConventions.AttributeDeploymentEnvironment:
                     SourceEnvironment = value;
                     break;

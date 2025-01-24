@@ -21,6 +21,7 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                     span.Application = value;
                     break;
                 case WellKnownAnnotations.Common.Environment:
+                case SemanticConventions.AttributeDeploymentEnvironmentName:
                 case SemanticConventions.AttributeDeploymentEnvironment:
                     span.Environment = value;
                     break;
