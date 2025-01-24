@@ -1,3 +1,7 @@
+## 0.1.13 (24-01-2025):
+
+Add support for `deployment.environment.name` attribute.
+
 ## 0.1.12 (16-12-2024): 
 
 Bump NuGet deps versions
