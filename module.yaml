@@ -9,6 +9,25 @@ notests *default:
     - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
     - module vostok.tracing.abstractions
     - module vostok.hercules.client.abstractions
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/net6.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/net8.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
 
   deps:
     - vostok.clusterclient.core
@@ -23,6 +42,32 @@ full-build > notests:
     - -vostok.devtools
     - vostok.devtools@with-net6.0
 
+  install:
+    - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
+    - module vostok.tracing.abstractions
+    - module vostok.hercules.client.abstractions
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/netstandard2.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/net6.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Tracing.Hercules/bin/Release/net8.0/Vostok.Tracing.Hercules.dll
+          modules:
+            - name: vostok.tracing.abstractions
+            - name: vostok.hercules.client.abstractions
+
   build:
     target: Vostok.Tracing.Hercules.sln
     configuration: Release
+    tool:
+      name: dotnet
