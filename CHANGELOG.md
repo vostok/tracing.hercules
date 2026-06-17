@@ -1,3 +1,7 @@
+## 0.1.15 (17-06-2026):
+
+Enable parsing int and long properties from string annotations to improve compatibility with OpenTelemetry clients.
+
 ## 0.1.13 (24-01-2025):
 
 Add support for `deployment.environment.name` attribute.
