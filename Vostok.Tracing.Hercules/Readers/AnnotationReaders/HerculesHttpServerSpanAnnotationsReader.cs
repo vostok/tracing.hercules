@@ -37,7 +37,11 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case SemanticConventions.AttributeUrlScheme:
                     span.RequestUrlScheme = value;
                     break;
-                
+                case SemanticConventions.AttributeNetHostPortLegacy:
+                case SemanticConventions.AttributeServerPort:
+                    if (int.TryParse(value, out var port))
+                        span.RequestUrlPort = port;
+                    break;
                 default:
                     base.AddValue(key, value);
                     break;
