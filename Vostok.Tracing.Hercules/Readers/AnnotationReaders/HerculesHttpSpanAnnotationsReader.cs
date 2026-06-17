@@ -38,6 +38,24 @@ namespace Vostok.Tracing.Hercules.Readers.AnnotationReaders
                 case SemanticConventions.AttributeHttpRequestMethod:
                     span.RequestMethod = value;
                     break;
+                case WellKnownAnnotations.Http.Request.Size:
+                case SemanticConventions.AttributeHttpRequestContentLengthLegacy:
+                case SemanticConventions.AttributeHttpRequestContentLength:
+                    if (long.TryParse(value, out var requestSize))
+                        span.RequestSize = requestSize;
+                    break;
+                case WellKnownAnnotations.Http.Response.Size:
+                case SemanticConventions.AttributeHttpResponseContentLengthLegacy:
+                case SemanticConventions.AttributeHttpResponseContentLength:
+                    if (long.TryParse(value, out var responseSize))
+                        span.ResponseSize = responseSize;
+                    break;
+                case WellKnownAnnotations.Http.Response.Code:
+                case SemanticConventions.AttributeHttpStatusCodeLegacy:
+                case SemanticConventions.AttributeHttpResponseStatusCode:
+                    if (int.TryParse(value, out var responseCode))
+                        span.ResponseCode = (ResponseCode)responseCode;
+                    break;
                 default:
                     base.AddValue(key, value);
                     break;
